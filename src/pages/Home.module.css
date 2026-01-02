@@ -1,0 +1,140 @@
+.hero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--layout-grid-gap);
+  align-items: center;
+  padding: var(--space-xl) 0 var(--space-xxl);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.headline {
+  font-size: clamp(2.5rem, 4vw, 3.6rem);
+  line-height: 1.1;
+}
+
+.subhead {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  max-width: 560px;
+}
+
+.heroCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-medium);
+  display: grid;
+  gap: 1rem;
+}
+
+.pillRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: rgba(14, 71, 101, 0.1);
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.heroImage {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--layout-grid-gap);
+  align-items: center;
+}
+
+.aboutCard {
+  background: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.logoMark {
+  width: 120px;
+  height: auto;
+  margin-bottom: var(--space-sm);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--layout-grid-gap);
+}
+
+.propertiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--layout-grid-gap);
+}
+
+.hostSection {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.input,
+.textarea {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: #f9f6f5;
+}
+
+.error {
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+
+.success {
+  margin-top: var(--space-sm);
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .about {
+    grid-template-columns: 1fr;
+    padding: var(--space-lg) 0;
+  }
+}

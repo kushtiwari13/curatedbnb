@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#efe1e1"/>
+      <stop offset="100%" stop-color="#f5eded"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="30" fill="url(#bg)"/>
+  <text x="200" y="90" text-anchor="middle" font-family="Playfair Display, serif" font-size="34" fill="#0e4765" letter-spacing="6">CURATED</text>
+  <text x="200" y="340" text-anchor="middle" font-family="Playfair Display, serif" font-size="34" fill="#0e4765" letter-spacing="6">BNB</text>
+  <g transform="translate(80,130)">
+    <rect x="10" y="60" width="220" height="110" rx="30" fill="#f39c35" stroke="#0e4765" stroke-width="6"/>
+    <rect x="30" y="30" width="180" height="80" rx="26" fill="#f8b25b" stroke="#0e4765" stroke-width="6"/>
+    <rect x="20" y="95" width="200" height="55" rx="16" fill="#35c7c0" stroke="#0e4765" stroke-width="6"/>
+    <circle cx="20" cy="115" r="12" fill="#35c7c0" stroke="#0e4765" stroke-width="6"/>
+    <circle cx="220" cy="115" r="12" fill="#35c7c0" stroke="#0e4765" stroke-width="6"/>
+  </g>
+  <text x="200" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#0e4765" font-weight="600">Comfort redefined</text>
+</svg>

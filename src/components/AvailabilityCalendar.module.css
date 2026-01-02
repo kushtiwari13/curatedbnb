@@ -1,0 +1,36 @@
+.calendar {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.caption {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.day {
+  border-radius: 10px !important;
+}
+
+.selected {
+  background: var(--color-secondary) !important;
+  color: #fff !important;
+}
+
+.today {
+  border: 1px solid var(--color-secondary) !important;
+}
+
+.disabled {
+  text-decoration: line-through;
+  color: #a8a8a8 !important;
+}
+
+.range {
+  background: rgba(14, 71, 101, 0.12) !important;
+  color: var(--color-text) !important;
+}

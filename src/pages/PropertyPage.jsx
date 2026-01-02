@@ -1,0 +1,101 @@
+import { Helmet } from 'react-helmet-async'
+import { useNavigate, useParams } from 'react-router-dom'
+import BookingWidget from '../components/BookingWidget'
+import Button from '../components/atoms/Button'
+import { getPropertyBySlug } from '../data/properties'
+import styles from './PropertyPage.module.css'
+
+const amenityIcons = {
+  view: '🌅',
+  pool: '🧊',
+  kitchen: '🍴',
+  wifi: '📶',
+  ac: '❄️',
+  spa: '💧',
+  fireplace: '🔥',
+  parking: '🅿️',
+  laundry: '🧺',
+}
+
+const PropertyPage = () => {
+  const { slug } = useParams()
+  const navigate = useNavigate()
+  const property = getPropertyBySlug(slug)
+
+  if (!property) {
+    return (
+      <div className="container section">
+        <p>We couldn&apos;t find that residence.</p>
+        <Button variant="primary" onClick={() => navigate('/')}>
+          Back to Home
+        </Button>
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <Helmet>
+        <title>{property.name} | Curated BNB</title>
+        <meta name="description" content={property.tagline} />
+      </Helmet>
+      <div className="container section">
+        <div className={styles.hero}>
+          <img src={property.image} alt={property.name} className={styles.heroImage} />
+          <div className={styles.overlay}>
+            <div className={styles.overlayContent}>
+              <p className={styles.tagline}>{property.location}</p>
+              <h1 style={{ color: '#fff', marginBottom: 0 }}>{property.name}</h1>
+              <p className={styles.tagline}>{property.tagline}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.layout}>
+          <div>
+            <div className={styles.chips}>
+              <span className={styles.chip}>{property.capacity.guests} guests</span>
+              <span className={styles.chip}>{property.capacity.bedrooms} bedrooms</span>
+              <span className={styles.chip}>{property.capacity.bathrooms} bathrooms</span>
+              <span className={styles.chip}>Wi-Fi</span>
+              <span className={styles.chip}>Parking</span>
+            </div>
+
+            <div className={styles.sectionCard}>
+              <h2>About this stay</h2>
+              {property.description.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+
+            <div className={styles.sectionCard} style={{ marginTop: 'var(--space-md)' }}>
+              <h2>Elevated essentials</h2>
+              <div className={styles.amenities}>
+                {property.amenities.map((item) => (
+                  <div key={item.label} className={styles.amenity}>
+                    <span aria-hidden>{amenityIcons[item.iconKey] || '✦'}</span>
+                    <span>{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.sectionCard} style={{ marginTop: 'var(--space-md)' }}>
+              <h2>Neighborhood highlights</h2>
+              <div className={styles.mapPlaceholder}>Map preview placeholder</div>
+              <ul>
+                {property.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <BookingWidget property={property} />
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default PropertyPage
