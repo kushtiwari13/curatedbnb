@@ -1,82 +1,94 @@
 .hero {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--layout-grid-gap);
-  align-items: center;
-  padding: var(--space-xl) 0 var(--space-xxl);
-}
-
-.heroText {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.headline {
-  font-size: clamp(2.5rem, 4vw, 3.6rem);
-  line-height: 1.1;
-}
-
-.subhead {
-  font-size: 1.05rem;
-  color: var(--color-muted);
-  max-width: 560px;
-}
-
-.heroCard {
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-medium);
-  display: grid;
-  gap: 1rem;
-}
-
-.pillRow {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.pill {
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-pill);
-  background: rgba(14, 71, 101, 0.1);
-  color: var(--color-secondary);
-  font-weight: 600;
-}
-
-.heroImage {
+  position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-
-.about {
+  min-height: 72vh;
+  margin: var(--space-lg) 0 var(--space-xl);
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--layout-grid-gap);
-  align-items: center;
+  place-items: center;
+  background-size: cover;
+  background-position: center;
 }
 
-.aboutCard {
-  background: var(--color-surface);
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(14, 71, 101, 0.14), rgba(15, 26, 36, 0.35)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.35));
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  max-width: 760px;
   padding: var(--space-lg);
+  display: grid;
+  gap: 1rem;
+  background: rgba(15, 26, 36, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
   box-shadow: var(--shadow-soft);
 }
 
+.headline {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  line-height: 1.05;
+  color: #fff;
+}
+
+.subhead {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.pillRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--space-md);
+}
+
+.softCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--layout-grid-gap);
+}
+
 .logoMark {
-  width: 120px;
+  width: 140px;
   height: auto;
-  margin-bottom: var(--space-sm);
 }
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--layout-grid-gap);
 }
 
@@ -87,11 +99,10 @@
 }
 
 .hostSection {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-medium);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--layout-grid-gap);
+  align-items: start;
 }
 
 .formGrid {
@@ -132,9 +143,11 @@
 }
 
 @media (max-width: 900px) {
-  .hero,
-  .about {
+  .hero {
+    margin: var(--space-md) 0 var(--space-lg);
+  }
+
+  .hostSection {
     grid-template-columns: 1fr;
-    padding: var(--space-lg) 0;
   }
 }

@@ -40,14 +40,17 @@ const PropertyPage = () => {
         <meta name="description" content={property.tagline} />
       </Helmet>
       <div className="container section">
-        <div className={styles.hero}>
-          <img src={property.image} alt={property.name} className={styles.heroImage} />
-          <div className={styles.overlay}>
-            <div className={styles.overlayContent}>
-              <p className={styles.tagline}>{property.location}</p>
-              <h1 style={{ color: '#fff', marginBottom: 0 }}>{property.name}</h1>
-              <p className={styles.tagline}>{property.tagline}</p>
-            </div>
+        <div
+          className={styles.hero}
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(15,26,36,0.4), rgba(15,26,36,0.7)), url(${property.image})`,
+          }}
+        >
+          <div className={styles.heroOverlay} aria-hidden />
+          <div className={styles.overlayContent}>
+            <p className={styles.tagline}>{property.location}</p>
+            <h1 style={{ color: '#fff', marginBottom: 0 }}>{property.name}</h1>
+            <p className={styles.tagline}>{property.tagline}</p>
           </div>
         </div>
 

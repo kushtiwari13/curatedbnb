@@ -4,7 +4,6 @@ import Button from '../components/atoms/Button'
 import FeatureCard from '../components/FeatureCard'
 import PropertyCard from '../components/PropertyCard'
 import styles from './Home.module.css'
-import heroImage from '../assets/P1.svg'
 import logo from '../assets/Logo.svg'
 import { properties } from '../data/properties'
 
@@ -73,71 +72,75 @@ const Home = () => {
           content="Curated BNB presents elevated boutique stays with concierge booking and thoughtful design."
         />
       </Helmet>
-      <div className="container">
-        <section className={styles.hero} id="hero">
-          <div className={styles.heroText}>
-            <div className={styles.pillRow}>
-              <span className={styles.pill}>Luxury stays</span>
-              <span className={styles.pill}>Concierge booking</span>
-              <span className={styles.pill}>Design-first</span>
-            </div>
-            <h1 className={styles.headline}>Curated stays. Elevated comfort.</h1>
-            <p className={styles.subhead}>
-              Boutique homes crafted for discerning travelers—where thoughtful design, private service, and seamless
-              booking come together.
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <Button as="a" href="#properties" variant="primary">
-                Explore our properties
-              </Button>
-              <Button as="a" href="#host" variant="secondary">
-                List your property
-              </Button>
-            </div>
+      <section
+        className={styles.hero}
+        id="hero"
+        style={{
+          backgroundImage: `url(${properties[1]?.image})`,
+        }}
+      >
+        <div className={styles.heroOverlay} aria-hidden />
+        <div className={styles.heroContent}>
+          <div className={styles.pillRow}>
+            <span className={styles.pill}>Boutique homes</span>
+            <span className={styles.pill}>Concierge booking</span>
+            <span className={styles.pill}>Effortless stays</span>
           </div>
-          <div className={styles.heroCard}>
-            <div className={styles.heroImage}>
-              <img src={heroImage} alt="Seaside Atelier placeholder" />
-            </div>
-            <div>
-              <h3 style={{ marginBottom: '0.35rem' }}>Seaside Atelier</h3>
-              <p style={{ margin: 0, color: 'var(--color-muted)' }}>
-                Sun-drenched terraces above the Tyrrhenian Sea. Linen-draped suites with curated art and private plunge.
-              </p>
-            </div>
+          <h1 className={styles.headline}>Curated stays on a grand canvas.</h1>
+          <p className={styles.subhead}>
+            Three signature residences with sweeping views, tactile interiors, and attentive service—crafted for guests who
+            prefer memorable over mass-market.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Button as="a" href="#properties" variant="primary">
+              Explore properties
+            </Button>
+            <Button as="a" href="#host" variant="secondary">
+              Host with us
+            </Button>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="container">
         <section className="section" id="about">
-          <div className={styles.about}>
-            <div className={styles.aboutCard}>
-              <img src={logo} alt="Curated BNB mark" className={styles.logoMark} />
-              <h2>Comfort redefined</h2>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2>Comfort, distilled</h2>
+              <p>Everything essential to a refined stay, without excess.</p>
+            </div>
+            <img src={logo} alt="Curated BNB mark" className={styles.logoMark} />
+          </div>
+          <div className={styles.aboutGrid}>
+            <div className={styles.softCard}>
+              <h3>Our point of view</h3>
               <p>
-                Curated BNB is a boutique collection of homes chosen for soulful design, comfort, and setting. Every stay
-                includes elevated linens, thoughtful amenities, and a concierge who knows the neighborhood by heart.
+                Curated BNB is a trio of signature homes chosen for their light, texture, and soul. Expect layered
+                interiors, artisanal touches, and the kind of calm you feel the moment you arrive.
               </p>
               <p>
-                We collaborate with local artisans and hosts to ensure each residence feels distinctive—whether you are
-                overlooking the sea, vineyards, or a vibrant city terrace.
+                A dedicated concierge readies every detail—arrivals, dining, experiences—so you can simply settle in and
+                live well.
               </p>
             </div>
-            <div className={styles.aboutCard}>
-              <h3>Why travelers choose us</h3>
+            <div className={styles.softCard}>
+              <h3>What you can count on</h3>
               <ul>
-                <li>Curated only-after inspection: no mass listings.</li>
-                <li>Seamless arrival with pre-arranged transfers and in-home orientation.</li>
-                <li>Design-forward furnishings and mood lighting for slow evenings in.</li>
-                <li>Responsive concierge: dining bookings, private chefs, tastings, and hidden gems.</li>
+                <li>Pre-arrival provisioning and effortless check-in.</li>
+                <li>Hotel-grade linens, plush robes, and spa-like touches.</li>
+                <li>Local expertise for dining, tastings, charters, and galleries.</li>
+                <li>Transparent pricing with live availability and secure payment.</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section className="section" id="features">
-          <div style={{ marginBottom: 'var(--space-md)' }}>
-            <h2>Curated for discerning stays</h2>
-            <p>Elevated essentials paired with intuitive service.</p>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2>Essential luxuries</h2>
+              <p>Considered finishes and thoughtful service in every stay.</p>
+            </div>
           </div>
           <div className={styles.featuresGrid}>
             {featureItems.map((item) => (
@@ -147,9 +150,11 @@ const Home = () => {
         </section>
 
         <section className="section" id="properties">
-          <div style={{ marginBottom: 'var(--space-md)' }}>
-            <h2>Our properties</h2>
-            <p>Three distinct stays, one standard of care.</p>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2>Signature residences</h2>
+              <p>Three distinct moods, one standard of care.</p>
+            </div>
           </div>
           <div className={styles.propertiesGrid}>
             {properties.map((property) => (
@@ -159,17 +164,15 @@ const Home = () => {
         </section>
 
         <section className="section" id="host">
-          <div className={styles.hostSection}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', alignItems: 'center' }}>
-              <div>
-                <h2>List your property with Curated BNB</h2>
-                <p>
-                  We partner with owners who value design, guest delight, and reliable care. Share a few details and
-                  we&apos;ll be in touch.
-                </p>
-              </div>
+          <div className={`${styles.softCard} ${styles.hostSection}`}>
+            <div>
+              <h2>List your property</h2>
+              <p>
+                If design, service, and reliability matter to you, we&apos;d love to learn about your home. We manage
+                bookings, guest care, and presentation—so you can focus on hospitality.
+              </p>
               <Button as="a" href="mailto:hello@curatedbnb.com" variant="secondary">
-                Talk to us
+                Talk with us
               </Button>
             </div>
 

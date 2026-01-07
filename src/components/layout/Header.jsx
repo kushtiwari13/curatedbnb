@@ -16,6 +16,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
+      {open && <div className={`${styles.overlay} ${open ? styles.open : ''}`} onClick={() => setOpen(false)} />}
       <div className={`${styles.inner} container`}>
         <Link to="/" className={styles.brand} aria-label="Curated BNB home">
           <img src={logo} alt="Curated BNB logo" className={styles.logo} />
@@ -26,20 +27,24 @@ const Header = () => {
         </Link>
         <nav className={`${styles.nav} ${open ? styles.open : ''}`} aria-label="Primary navigation">
           {navLinks.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className={styles.navLink}
-              onClick={() => setOpen(false)}
-            >
+            <a key={item.href} href={item.href} className={styles.navLink} onClick={() => setOpen(false)}>
               {item.label}
             </a>
           ))}
           <Link to="/properties/property-1" className={styles.navLink} onClick={() => setOpen(false)}>
-            Stays
+            Properties
           </Link>
+          <Button
+            as="a"
+            href="/#properties"
+            variant="primary"
+            className={styles.navCTA}
+            onClick={() => setOpen(false)}
+          >
+            Book a Stay
+          </Button>
         </nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: 'Fabout0.625rem 0' }}>
           <Button
             as="a"
             href="/#properties"
@@ -55,7 +60,7 @@ const Header = () => {
             aria-expanded={open}
             aria-label="Toggle menu"
           >
-            ☰
+            {open ? '✕' : '☰'}
           </button>
         </div>
       </div>

@@ -1,7 +1,3 @@
-import P1 from '../assets/P1.svg'
-import P2 from '../assets/P2.svg'
-import P3 from '../assets/P3.svg'
-
 const ical =
   'https://www.airbnb.com/calendar/ical/1194226480033123893.ics?t=b74d8cda4c4a4c88a571bcf0ef4d192d&locale=en-GB'
 
@@ -27,7 +23,8 @@ export const properties = [
     ],
     capacity: { guests: 4, bedrooms: 2, bathrooms: 2 },
     pricing: { nightlyRate: 520, cleaningFee: 110, serviceFeePercent: 0.12 },
-    image: P1,
+    image:
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1800&q=80',
     iCalUrl: ical,
     highlights: ['Walk to the marina', 'Sunrise-facing suites', 'Curated art pieces'],
   },
@@ -52,7 +49,8 @@ export const properties = [
     ],
     capacity: { guests: 6, bedrooms: 3, bathrooms: 3 },
     pricing: { nightlyRate: 620, cleaningFee: 140, serviceFeePercent: 0.12 },
-    image: P2,
+    image:
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1800&q=80',
     iCalUrl: ical,
     highlights: ['Adjacent to tasting rooms', 'Chef partnerships', 'West-facing sunsets'],
   },
@@ -77,7 +75,8 @@ export const properties = [
     ],
     capacity: { guests: 4, bedrooms: 2, bathrooms: 2 },
     pricing: { nightlyRate: 440, cleaningFee: 95, serviceFeePercent: 0.11 },
-    image: P3,
+    image:
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=80',
     iCalUrl: ical,
     highlights: ['Walkable to Bairro Alto', 'Curated art walls', 'Sunset terrace dining'],
   },
