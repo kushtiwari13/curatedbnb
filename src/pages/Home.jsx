@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Helmet } from 'react-helmet-async'
+import useDocumentMeta from '../hooks/useDocumentMeta'
 import Button from '../components/atoms/Button'
 import FeatureCard from '../components/FeatureCard'
 import PropertyCard from '../components/PropertyCard'
@@ -44,6 +44,15 @@ const Home = () => {
   const [form, setForm] = useState({ name: '', email: '', location: '', message: '' })
   const [errors, setErrors] = useState({})
   const [formStatus, setFormStatus] = useState('')
+  const metaTitle = 'Curated BNB | Luxury boutique stays'
+  const metaDescription = 'Curated BNB presents elevated boutique stays with concierge booking and thoughtful design.'
+
+  useDocumentMeta({
+    title: metaTitle,
+    description: metaDescription,
+    ogImage: properties[1]?.image,
+    url: typeof window !== 'undefined' ? window.location.href : undefined,
+  })
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }))
@@ -65,13 +74,6 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Curated BNB | Luxury boutique stays</title>
-        <meta
-          name="description"
-          content="Curated BNB presents elevated boutique stays with concierge booking and thoughtful design."
-        />
-      </Helmet>
       <section
         className={styles.hero}
         id="hero"

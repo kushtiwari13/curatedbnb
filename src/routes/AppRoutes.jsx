@@ -10,6 +10,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/properties/:slug" element={<PropertyPage />} />
+          <Route path="/property/:id" element={<PropertyPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

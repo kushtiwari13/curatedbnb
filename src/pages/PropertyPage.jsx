@@ -1,8 +1,8 @@
-import { Helmet } from 'react-helmet-async'
 import { useNavigate, useParams } from 'react-router-dom'
 import BookingWidget from '../components/BookingWidget'
 import Button from '../components/atoms/Button'
 import { getPropertyBySlug } from '../data/properties'
+import useDocumentMeta from '../hooks/useDocumentMeta'
 import styles from './PropertyPage.module.css'
 
 const amenityIcons = {
@@ -18,9 +18,24 @@ const amenityIcons = {
 }
 
 const PropertyPage = () => {
-  const { slug } = useParams()
+  const { slug, id } = useParams()
   const navigate = useNavigate()
-  const property = getPropertyBySlug(slug)
+  const resolvedSlug = slug || (id ? `property-${id}` : undefined)
+  const property = getPropertyBySlug(resolvedSlug)
+
+  useDocumentMeta(
+    property
+      ? {
+          title: `${property.name} | Curated BNB`,
+          description: property.tagline,
+          ogImage: property.image,
+          url: typeof window !== 'undefined' ? window.location.href : undefined,
+        }
+      : {
+          title: 'Residence not found | Curated BNB',
+          description: 'We could not find the residence you requested.',
+        },
+  )
 
   if (!property) {
     return (
@@ -35,10 +50,6 @@ const PropertyPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{property.name} | Curated BNB</title>
-        <meta name="description" content={property.tagline} />
-      </Helmet>
       <div className="container section">
         <div
           className={styles.hero}

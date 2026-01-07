@@ -44,7 +44,7 @@ const Header = () => {
             Book a Stay
           </Button>
         </nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: 'Fabout0.625rem 0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.625rem 0' }}>
           <Button
             as="a"
             href="/#properties"
