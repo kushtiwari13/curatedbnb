@@ -6,7 +6,7 @@ const FeatureCard = ({ title, copy, icon }) => {
       <div className={styles.icon} aria-hidden>
         {icon}
       </div>
-      <div>
+      <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.copy}>{copy}</p>
       </div>

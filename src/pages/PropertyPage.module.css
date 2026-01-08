@@ -15,7 +15,7 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 26, 36, 0.35) 0%, rgba(15, 26, 36, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(21, 21, 21, 0.35) 0%, rgba(21, 21, 21, 0.85) 100%);
 }
 
 .overlayContent {
@@ -50,8 +50,11 @@
   padding: 0.35rem 0.75rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  background: #f9f6f5;
+  background: var(--color-softSurface);
   color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
 }
 
 .sectionCard {
@@ -75,6 +78,7 @@
   padding: 0.6rem 0.8rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  background: var(--color-softSurface);
 }
 
 .mapPlaceholder {
@@ -86,12 +90,12 @@
   color: var(--color-muted);
   background: repeating-linear-gradient(
       45deg,
-      rgba(14, 71, 101, 0.06),
-      rgba(14, 71, 101, 0.06) 10px,
-      rgba(14, 71, 101, 0.02) 10px,
-      rgba(14, 71, 101, 0.02) 20px
+      rgba(200, 164, 90, 0.06),
+      rgba(200, 164, 90, 0.06) 10px,
+      rgba(200, 164, 90, 0.02) 10px,
+      rgba(200, 164, 90, 0.02) 20px
     ),
-    #fdfafa;
+    var(--color-softSurface);
 }
 
 @media (max-width: 900px) {

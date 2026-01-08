@@ -7,36 +7,75 @@ import styles from './Home.module.css'
 import logo from '../assets/Logo.svg'
 import { properties } from '../data/properties'
 
+const iconProps = {
+  width: 24,
+  height: 24,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.5,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+  'aria-hidden': true,
+}
+
 const featureItems = [
   {
     title: 'Handpicked Homes',
     copy: 'Each residence is inspected for design, comfort, and locality—no generic stays.',
-    icon: '✦',
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 3l2.2 4.5 5 .7-3.6 3.5.9 5L12 14.3 7.5 16.7l.9-5L4.8 8.2l5-.7L12 3z" />
+      </svg>
+    ),
   },
   {
     title: 'Seamless Booking',
     copy: 'Clear pricing, live availability, and concierge confirmation within moments.',
-    icon: '↺',
+    icon: (
+      <svg {...iconProps}>
+        <rect x="3" y="4" width="18" height="17" rx="2" />
+        <path d="M8 2v4M16 2v4M3 9h18" />
+      </svg>
+    ),
   },
   {
     title: 'Premium Linen & Amenities',
     copy: 'Hotel-grade bedding, plush robes, and thoughtful toiletries as standard.',
-    icon: '☁︎',
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 3c3 3 6 6 6 9a6 6 0 1 1-12 0c0-3 3-6 6-9z" />
+      </svg>
+    ),
   },
   {
     title: 'Concierge Support',
     copy: 'Transfers, private dining, tastings, and experiences handled with care.',
-    icon: '⌁',
+    icon: (
+      <svg {...iconProps}>
+        <path d="M6 12V9a6 6 0 1 1 12 0v3l2 2H4l2-2z" />
+        <path d="M8 16h8a2 2 0 0 1-4 2 2 2 0 0 1-4-2z" />
+      </svg>
+    ),
   },
   {
     title: 'Prime Locations',
     copy: 'Seaside terraces, hillside decks, and city rooftops close to the best of each locale.',
-    icon: '⌂',
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 22s7-7.5 7-13a7 7 0 0 0-14 0c0 5.5 7 13 7 13z" />
+        <circle cx="12" cy="9" r="2.5" />
+      </svg>
+    ),
   },
   {
     title: 'Elevated Design',
     copy: 'Aesthetic, soulful interiors that feel both luxe and livable.',
-    icon: '✧',
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 3l7 7-7 11-7-11 7-7z" />
+      </svg>
+    ),
   },
 ]
 

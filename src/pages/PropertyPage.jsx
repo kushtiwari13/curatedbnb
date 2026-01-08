@@ -54,7 +54,7 @@ const PropertyPage = () => {
         <div
           className={styles.hero}
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(15,26,36,0.4), rgba(15,26,36,0.7)), url(${property.image})`,
+            backgroundImage: `linear-gradient(180deg, rgba(21, 21, 21, 0.4), rgba(21, 21, 21, 0.75)), url(${property.image})`,
           }}
         >
           <div className={styles.heroOverlay} aria-hidden />

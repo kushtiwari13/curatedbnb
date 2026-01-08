@@ -14,24 +14,26 @@
 }
 
 .primary {
-  background: var(--color-secondary);
-  color: #ffffff;
+  background: var(--color-text);
+  color: var(--color-primary);
+  border-color: transparent;
   box-shadow: var(--shadow-soft);
 }
 
 .primary:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-medium);
+  filter: brightness(1.05);
 }
 
 .secondary {
   background: transparent;
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  color: var(--color-text);
+  border-color: var(--color-text);
 }
 
 .secondary:hover {
-  background: rgba(14, 71, 101, 0.08);
+  background: rgba(21, 21, 21, 0.06);
 }
 
 .ghost {
@@ -41,8 +43,8 @@
 }
 
 .ghost:hover {
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
+  border-color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .small {

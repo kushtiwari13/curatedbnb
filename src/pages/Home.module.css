@@ -13,8 +13,8 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(14, 71, 101, 0.14), rgba(15, 26, 36, 0.35)),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.35));
+  background: linear-gradient(120deg, rgba(200, 164, 90, 0.14), rgba(21, 21, 21, 0.45)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.4));
 }
 
 .heroContent {
@@ -26,8 +26,8 @@
   padding: var(--space-lg);
   display: grid;
   gap: 1rem;
-  background: rgba(15, 26, 36, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(21, 21, 21, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
 }
@@ -35,12 +35,13 @@
 .headline {
   font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 1.05;
+  letter-spacing: -0.015em;
   color: #fff;
 }
 
 .subhead {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .pillRow {
@@ -53,10 +54,13 @@
 .pill {
   padding: 0.4rem 0.9rem;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   color: #fff;
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
 }
 
 .sectionHeader {
@@ -120,6 +124,9 @@
 
 .label {
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
 }
 
 .input,
@@ -128,7 +135,15 @@
   border-radius: var(--radius-sm);
   padding: 0.75rem;
   font-size: 1rem;
-  background: #f9f6f5;
+  background: var(--color-softSurface);
+  color: var(--color-text);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: 2px solid rgba(200, 164, 90, 0.4);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
 }
 
 .error {
