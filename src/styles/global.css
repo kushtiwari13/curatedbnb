@@ -39,6 +39,17 @@ p {
   color: var(--color-muted);
 }
 
+ul,
+ol {
+  margin: 0 0 var(--space-sm);
+  padding-left: 1.25rem;
+  color: var(--color-muted);
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
 label,
 small {
   color: var(--color-muted);

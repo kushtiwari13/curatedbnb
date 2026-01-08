@@ -113,32 +113,56 @@ const Home = () => {
 
   return (
     <>
-      <section
-        className={styles.hero}
-        id="hero"
-        style={{
-          backgroundImage: `url(${properties[1]?.image})`,
-        }}
-      >
-        <div className={styles.heroOverlay} aria-hidden />
-        <div className={styles.heroContent}>
-          <div className={styles.pillRow}>
-            <span className={styles.pill}>Boutique homes</span>
-            <span className={styles.pill}>Concierge booking</span>
-            <span className={styles.pill}>Effortless stays</span>
+      <section className={styles.hero} id="hero">
+        <div className={styles.heroBackdrop} aria-hidden />
+        <div className={`container ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
+            <div className={styles.pillRow}>
+              <span className={styles.pill}>Boutique homes</span>
+              <span className={styles.pill}>Concierge booking</span>
+              <span className={styles.pill}>Effortless stays</span>
+            </div>
+            <h1 className={styles.headline}>Curated stays on a grand canvas.</h1>
+            <p className={styles.subhead}>
+              Three signature residences with sweeping views, tactile interiors, and attentive service—crafted for guests
+              who prefer memorable over mass-market.
+            </p>
+            <div className={styles.heroActions}>
+              <Button as="a" href="#properties" variant="primary" className={styles.heroPrimary}>
+                Explore properties
+              </Button>
+              <Button as="a" href="#host" variant="secondary" className={styles.heroSecondary}>
+                Host with us
+              </Button>
+            </div>
+            <div className={styles.heroStats}>
+              <div className={styles.stat}>
+                <span className={styles.statValue}>3</span>
+                <span className={styles.statLabel}>Signature residences</span>
+              </div>
+              <div className={styles.stat}>
+                <span className={styles.statValue}>24/7</span>
+                <span className={styles.statLabel}>Concierge access</span>
+              </div>
+              <div className={styles.stat}>
+                <span className={styles.statValue}>5★</span>
+                <span className={styles.statLabel}>Guest experience</span>
+              </div>
+            </div>
           </div>
-          <h1 className={styles.headline}>Curated stays on a grand canvas.</h1>
-          <p className={styles.subhead}>
-            Three signature residences with sweeping views, tactile interiors, and attentive service—crafted for guests who
-            prefer memorable over mass-market.
-          </p>
-          <div className={styles.heroActions}>
-            <Button as="a" href="#properties" variant="primary" className={styles.heroPrimary}>
-              Explore properties
-            </Button>
-            <Button as="a" href="#host" variant="secondary" className={styles.heroSecondary}>
-              Host with us
-            </Button>
+          <div className={styles.heroMedia}>
+            <img
+              src={properties[2]?.image}
+              alt="Curated BNB signature residence"
+              className={`${styles.heroImage} imageFrame`}
+            />
+            <div className={styles.heroPanel}>
+              <span className={styles.panelEyebrow}>Curated standard</span>
+              <h3 className={styles.panelTitle}>Refined stays, handled end-to-end.</h3>
+              <p className={styles.panelCopy}>
+                From arrival to departure, every detail is orchestrated so you can settle in effortlessly.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -146,11 +170,15 @@ const Home = () => {
       <div className="container">
         <section className="section" id="about">
           <div className={styles.sectionHeader}>
-            <div>
+            <div className={styles.sectionIntro}>
+              <span className={styles.eyebrow}>About</span>
               <h2>Comfort, distilled</h2>
               <p>Everything essential to a refined stay, without excess.</p>
             </div>
-            <img src={logo} alt="Curated BNB mark" className={styles.logoMark} />
+            <div className={styles.logoCard}>
+              <img src={logo} alt="Curated BNB mark" className={styles.logoMark} />
+              <span className={styles.logoCaption}>Curated BNB</span>
+            </div>
           </div>
           <div className={styles.aboutGrid}>
             <div className={styles.softCard}>
