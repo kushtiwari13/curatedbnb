@@ -105,5 +105,12 @@
 
   .hero {
     padding: var(--space-md);
+    min-height: 52vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 46vh;
   }
 }

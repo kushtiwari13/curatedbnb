@@ -67,6 +67,9 @@
 .summaryRow {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   color: var(--color-muted);
 }
 

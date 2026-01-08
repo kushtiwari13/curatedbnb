@@ -13,7 +13,7 @@
 }
 
 .day {
-  border-radius: 10px !important;
+  border-radius: var(--radius-sm) !important;
 }
 
 .selected {

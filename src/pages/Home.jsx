@@ -132,11 +132,11 @@ const Home = () => {
             Three signature residences with sweeping views, tactile interiors, and attentive service—crafted for guests who
             prefer memorable over mass-market.
           </p>
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Button as="a" href="#properties" variant="primary">
+          <div className={styles.heroActions}>
+            <Button as="a" href="#properties" variant="primary" className={styles.heroPrimary}>
               Explore properties
             </Button>
-            <Button as="a" href="#host" variant="secondary">
+            <Button as="a" href="#host" variant="secondary" className={styles.heroSecondary}>
               Host with us
             </Button>
           </div>

@@ -63,12 +63,38 @@
   font-size: 0.7rem;
 }
 
+.heroActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.heroPrimary {
+  min-width: 180px;
+}
+
+.heroSecondary {
+  min-width: 180px;
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.heroSecondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #fff;
+}
+
 .sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
 }
 
 .softCard {
@@ -160,9 +186,29 @@
 @media (max-width: 900px) {
   .hero {
     margin: var(--space-md) 0 var(--space-lg);
+    min-height: 62vh;
   }
 
   .hostSection {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 56vh;
+  }
+
+  .heroContent {
+    padding: var(--space-md);
+  }
+
+  .heroActions {
+    width: 100%;
+  }
+
+  .heroPrimary,
+  .heroSecondary {
+    width: 100%;
   }
 }
