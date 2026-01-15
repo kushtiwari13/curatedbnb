@@ -14,7 +14,19 @@ const proxyBase = import.meta.env.VITE_ICAL_PROXY
 
 const parseDateLine = (line) => {
   const [, value] = line.split(':')
-  return normalizeDate(new Date(value))
+  if (!value) return null
+
+  const trimmed = value.trim()
+  if (/^\d{8}$/.test(trimmed)) {
+    const year = Number(trimmed.slice(0, 4))
+    const month = Number(trimmed.slice(4, 6)) - 1
+    const day = Number(trimmed.slice(6, 8))
+    return { date: normalizeDate(new Date(year, month, day)), isDateOnly: true }
+  }
+
+  const parsed = new Date(trimmed)
+  if (Number.isNaN(parsed.getTime())) return null
+  return { date: normalizeDate(parsed), isDateOnly: false }
 }
 
 const parseICal = (text) => {
@@ -23,10 +35,18 @@ const parseICal = (text) => {
 
   text.split(/\r?\n/).forEach((line) => {
     if (line.startsWith('DTSTART')) {
-      current.start = parseDateLine(line)
+      const parsed = parseDateLine(line)
+      current.start = parsed?.date
     }
     if (line.startsWith('DTEND')) {
-      current.end = parseDateLine(line)
+      const parsed = parseDateLine(line)
+      if (parsed?.date) {
+        const endDate = new Date(parsed.date)
+        if (parsed.isDateOnly) {
+          endDate.setDate(endDate.getDate() - 1)
+        }
+        current.end = normalizeDate(endDate)
+      }
     }
     if (line.startsWith('END:VEVENT')) {
       if (current.start && current.end) {

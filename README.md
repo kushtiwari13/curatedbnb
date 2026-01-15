@@ -7,13 +7,13 @@ Luxury, boutique-stay marketing and booking site built with React + Vite.
 - Three property detail pages sharing a refined template with sticky booking widget, amenity grid, and map placeholder.
 - Reusable design system: theme tokens → CSS variables, buttons, cards, layout shell, modal, calendar.
 - Availability uses Airbnb iCal feed with fallback and optional proxy to bypass CORS.
-- Payment flow supports Stripe Checkout or a realistic stub mode for demos.
+- Payment flow supports Razorpay Checkout or a realistic stub mode for demos.
 
 ## Tech stack
 - React 19, React Router 7, React Helmet for SEO
 - CSS Modules + global variables, Playfair Display + Inter typography
 - react-day-picker for the date range picker
-- Optional Express + Stripe backend for Checkout sessions
+- Optional Express + Razorpay backend for order creation and verification
 
 ## Getting started
 ```bash
@@ -29,13 +29,17 @@ npm run dev:full   # run both (uses concurrently)
 Create a `.env` file in the project root (Vite) and another for the server if needed.
 
 Frontend (`.env`):
-- `VITE_PAYMENT_MODE=stub` (default) or `stripe`
-- `VITE_STRIPE_PUBLISHABLE_KEY=<your_stripe_publishable_key>` (required when `stripe`)
+- `VITE_PAYMENT_MODE=stub` (default) or `razorpay`
+- `VITE_RAZORPAY_KEY_ID=<your_razorpay_key_id>` (required when `razorpay`)
 - `VITE_ICAL_PROXY=/api/ical` (optional; use when direct iCal fetch is blocked by CORS)
 
 Server (`.env` or shell exports):
-- `STRIPE_SECRET_KEY=<your_stripe_secret_key>` (required for live Stripe mode)
-- `DOMAIN=http://localhost:5173` (used for Stripe redirect URLs)
+- `RAZORPAY_KEY_ID=<your_razorpay_key_id>` (required for Razorpay)
+- `RAZORPAY_KEY_SECRET=<your_razorpay_key_secret>` (required for Razorpay)
+- `OWNER_EMAIL=owner@example.com` (recipient for booking emails)
+- `FROM_EMAIL=no-reply@example.com` (sender address for mail())
+- `FROM_NAME=Curated BNB` (sender name for mail())
+- `APP_URL=https://your-domain.com` (used to generate download links in emails)
 - `PORT=4242` (optional override)
 
 ## Availability (Airbnb iCal)
@@ -45,7 +49,9 @@ Server (`.env` or shell exports):
 
 ## Payment flow
 - **Stub mode (default):** Simulated payment with confirmation modal and download/email placeholders.
-- **Stripe mode:** Set `VITE_PAYMENT_MODE=stripe`, configure keys above, run `npm run server`, and use the `/api/create-checkout-session` endpoint (proxied in Vite). Secrets remain server-side.
+- **Razorpay mode:** Set `VITE_PAYMENT_MODE=razorpay`, configure keys above, and use the `/api/create-order` + `/api/verify-payment` endpoints (via Node or PHP). Secrets remain server-side.
+- **Email + download:** The verify endpoint generates confirmation files and sends email via PHP `mail()` if available. Confirmations are stored in `/confirmations`.
+- **Shared hosting (PHP):** Deploy `public/api/create-order.php` and `public/api/verify-payment.php`, and keep the `.htaccess` rewrite rules so `/api/create-order` maps to the PHP files.
 
 ## Project structure
 ```
@@ -58,7 +64,7 @@ src/
   services/      # Availability + payment utilities
   styles/        # Global styles
   theme/         # Theme tokens + variable application
-server/          # Express + Stripe checkout + iCal proxy
+server/          # Express + Razorpay order/verify + iCal proxy
 public/Logo.svg  # Favicon/logo
 ```
 

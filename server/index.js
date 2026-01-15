@@ -1,14 +1,15 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import Stripe from 'stripe'
+import crypto from 'crypto'
 
 dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 4242
 const domain = process.env.DOMAIN || process.env.CLIENT_URL || 'http://localhost:5173'
-const stripeSecret = process.env.STRIPE_SECRET_KEY
+const razorpayKeyId = 'rzp_test_S2ZvLKm3aet64B'
+const razorpayKeySecret = 'ttl0eZaZFxqBuRCDIFmlPEOp'
 
 app.use(
   cors({
@@ -33,51 +34,80 @@ app.get('/ical', async (req, res) => {
   }
 })
 
-app.post('/create-checkout-session', async (req, res) => {
-  if (!stripeSecret) {
-    return res.status(400).json({ message: 'Stripe secret key missing on server.' })
+app.post('/create-order', async (req, res) => {
+  if (!razorpayKeyId || !razorpayKeySecret) {
+    return res.status(400).json({ message: 'Razorpay keys missing on server.' })
   }
 
-  const stripe = new Stripe(stripeSecret)
-  const { propertyId, propertySlug, propertyName, dates, guests, total } = req.body
+  const { propertyId, propertyName, dates, guests, total } = req.body
 
   if (!propertyId || !dates?.checkIn || !dates?.checkOut || !total) {
     return res.status(400).json({ message: 'Invalid booking payload.' })
   }
 
+  const amount = Math.round(Number(total) * 100)
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return res.status(400).json({ message: 'Invalid booking amount.' })
+  }
+
   try {
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      success_url: `${domain}/properties/${propertySlug || propertyId}?status=success`,
-      cancel_url: `${domain}/properties/${propertySlug || propertyId}?status=cancelled`,
-      customer_email: req.body.email,
-      metadata: {
-        propertyId,
-        propertyName,
-        checkIn: dates.checkIn,
-        checkOut: dates.checkOut,
-        guests,
+    const auth = Buffer.from(`${razorpayKeyId}:${razorpayKeySecret}`).toString('base64')
+    const response = await fetch('https://api.razorpay.com/v1/orders', {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        'Content-Type': 'application/json',
       },
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: propertyName || 'Curated BNB stay',
-              description: `Guests: ${guests}`,
-            },
-            unit_amount: Math.round(Number(total) * 100),
-          },
-          quantity: 1,
+      body: JSON.stringify({
+        amount,
+        currency: 'INR',
+        receipt: `curatedbnb_${Date.now()}`,
+        notes: {
+          propertyId,
+          propertyName,
+          checkIn: dates.checkIn,
+          checkOut: dates.checkOut,
+          guests,
         },
-      ],
+      }),
     })
 
-    res.json({ sessionId: session.id })
+    if (!response.ok) {
+      const text = await response.text()
+      console.error('Razorpay order error', text)
+      return res.status(502).json({ message: 'Unable to create Razorpay order.' })
+    }
+
+    const order = await response.json()
+    res.json({
+      orderId: order.id,
+      amount: order.amount,
+      currency: order.currency,
+    })
   } catch (error) {
-    console.error('Stripe error', error)
-    res.status(500).json({ message: 'Unable to start checkout.' })
+    console.error('Razorpay order error', error)
+    res.status(500).json({ message: 'Unable to create Razorpay order.' })
   }
+})
+
+app.post('/verify-payment', (req, res) => {
+  if (!razorpayKeySecret) {
+    return res.status(400).json({ message: 'Razorpay key secret missing on server.' })
+  }
+
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body
+  if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+    return res.status(400).json({ message: 'Missing payment verification fields.' })
+  }
+
+  const payload = `${razorpay_order_id}|${razorpay_payment_id}`
+  const expected = crypto.createHmac('sha256', razorpayKeySecret).update(payload).digest('hex')
+
+  if (expected !== razorpay_signature) {
+    return res.status(400).json({ message: 'Invalid payment signature.' })
+  }
+
+  res.json({ status: 'success', paymentId: razorpay_payment_id })
 })
 
 app.listen(port, () => {
