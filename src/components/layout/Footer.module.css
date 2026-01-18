@@ -81,6 +81,15 @@
   gap: 0.35rem;
 }
 
+.legalLink {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.legalLink:hover {
+  text-decoration: none;
+}
+
 @media (max-width: 1100px) {
   .inner {
     grid-template-columns: repeat(3, minmax(0, 1fr));

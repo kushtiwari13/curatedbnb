@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../atoms/Button'
 import styles from './Header.module.css'
-import logo from '../../assets/curated_logo_new.png'
+import logo from '../../assets/Logo.svg'
+// import logo from '../../assets/curated_logo_new.png'
 
 const navLinks = [
   { label: 'About', href: '/#about' },

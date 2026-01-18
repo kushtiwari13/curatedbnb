@@ -71,7 +71,10 @@ const Footer = () => {
         </div>
       </div>
       <div className={`container ${styles.legal}`}>
-        © {new Date().getFullYear()} Curated BNB. Crafted with care. Designed and developed by MindsAhead Digital
+        © {new Date().getFullYear()} Curated BNB. Crafted with care. Designed and developed by{' '}
+        <a className={styles.legalLink} href="https://www.mindsahead.in" target="_blank" rel="noreferrer">
+          MindsAhead Digital
+        </a>
       </div>
     </footer>
   )
