@@ -115,7 +115,7 @@ const Home = () => {
     <>
       <section className={styles.hero} id="hero">
         <div className={styles.heroBackdrop} aria-hidden />
-        <div className={`container ${styles.heroInner}`}>
+        <div className={`container ${styles.heroInner}`} data-reveal>
           <div className={styles.heroCopy}>
             <div className={styles.pillRow}>
               <span className={styles.pill}>Boutique homes</span>
@@ -168,7 +168,7 @@ const Home = () => {
       </section>
 
       <div className="container">
-        <section className="section" id="about">
+        <section className="section" id="about" data-reveal>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionIntro}>
               <span className={styles.eyebrow}>About</span>
@@ -204,7 +204,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="section" id="features">
+        <section className="section" id="features" data-reveal>
           <div className={styles.sectionHeader}>
             <div>
               <h2>Essential luxuries</h2>
@@ -218,7 +218,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="section" id="properties">
+        <section className="section" id="properties" data-reveal>
           <div className={styles.sectionHeader}>
             <div>
               <h2>Signature residences</h2>
@@ -232,7 +232,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="section" id="host">
+        <section className="section" id="host" data-reveal>
           <div className={`${styles.softCard} ${styles.hostSection}`}>
             <div>
               <h2>List your property</h2>

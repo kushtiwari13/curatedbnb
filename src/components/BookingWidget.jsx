@@ -110,7 +110,7 @@ const BookingWidget = ({ property }) => {
   }
 
   return (
-    <aside className={styles.widget} aria-label="Booking widget">
+    <aside className={styles.widget} aria-label="Booking widget" data-reveal>
       <div className={styles.header}>
         <div>
           <div className={styles.price}>{formatCurrency(property.pricing.nightlyRate)}</div>

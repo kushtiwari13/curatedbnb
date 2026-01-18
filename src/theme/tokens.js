@@ -1,7 +1,7 @@
 export const tokens = {
   colors: {
     primary: '#f7f4ee',
-    secondary: '#2f2b27',
+    secondary: '#13466d',
     accent: '#c8a45a',
     text: '#151515',
     muted: '#45443f',

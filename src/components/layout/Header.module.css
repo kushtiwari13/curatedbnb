@@ -39,6 +39,7 @@
   font-family: var(--font-heading);
   font-size: 1.1rem;
   letter-spacing: -0.02em;
+  color: var(--color-secondary);
 }
 
 .brandTagline {
@@ -72,8 +73,8 @@
 
 .navLink:hover,
 .navLink:focus-visible {
-  color: var(--color-text);
-  background: var(--color-softSurface);
+  color: var(--color-secondary);
+  background: rgba(19, 70, 109, 0.08);
   outline: 1px solid var(--color-border);
   outline-offset: 2px;
 }

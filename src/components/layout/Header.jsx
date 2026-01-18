@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../atoms/Button'
 import styles from './Header.module.css'
-import logo from '../../assets/Logo.svg'
+import logo from '../../assets/curated_logo_new.png'
 
 const navLinks = [
   { label: 'About', href: '/#about' },
@@ -31,7 +31,7 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <Link to="/properties/property-1" className={styles.navLink} onClick={() => setOpen(false)}>
+          <Link to="/properties/the-brutalist-den-koramangala" className={styles.navLink} onClick={() => setOpen(false)}>
             Properties
           </Link>
           <Button

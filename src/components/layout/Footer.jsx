@@ -27,14 +27,14 @@ const Footer = () => {
         </div>
         <div className={styles.links}>
           <strong>Stays</strong>
-          <Link to="/properties/property-1" className={styles.link}>
-            Seaside Atelier
+          <Link to="/properties/the-brutalist-den-koramangala" className={styles.link}>
+            The Brutalist Den
           </Link>
-          <Link to="/properties/property-2" className={styles.link}>
-            Hillside Hideaway
+          <Link to="/properties/the-city-boho-jayanagar" className={styles.link}>
+            The City Boho
           </Link>
-          <Link to="/properties/property-3" className={styles.link}>
-            Terrace Maison
+          <Link to="/properties/the-japandi-nest-jayanagar" className={styles.link}>
+            The Japandi Nest
           </Link>
         </div>
         <div className={styles.links}>
@@ -48,6 +48,24 @@ const Footer = () => {
           <a className={styles.link} href="https://www.linkedin.com" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
+        </div>
+        <div className={styles.links}>
+          <strong>Legal</strong>
+          <Link to="/terms" className={styles.link}>
+            Terms &amp; Conditions
+          </Link>
+          <Link to="/privacy" className={styles.link}>
+            Privacy Policy
+          </Link>
+          <Link to="/shipping" className={styles.link}>
+            Shipping Policy
+          </Link>
+          <Link to="/cancellation-refund" className={styles.link}>
+            Cancellation &amp; Refund
+          </Link>
+          <Link to="/contact" className={styles.link}>
+            Contact Us
+          </Link>
         </div>
       </div>
       <div className={`container ${styles.legal}`}>© {new Date().getFullYear()} Curated BNB. Crafted with care.</div>

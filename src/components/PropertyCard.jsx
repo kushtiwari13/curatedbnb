@@ -7,7 +7,7 @@ const formatCurrency = (value) =>
 
 const PropertyCard = ({ property }) => {
   return (
-    <article className={styles.card}>
+    <article className={styles.card} data-reveal>
       <img src={property.image} alt={property.name} className={styles.image} />
       <div className={styles.content}>
         <span className={styles.location}>{property.location}</span>

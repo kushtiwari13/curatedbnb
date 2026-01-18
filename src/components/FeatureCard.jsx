@@ -2,7 +2,7 @@ import styles from './FeatureCard.module.css'
 
 const FeatureCard = ({ title, copy, icon }) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-reveal>
       <div className={styles.icon} aria-hidden>
         {icon}
       </div>

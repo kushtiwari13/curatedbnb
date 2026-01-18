@@ -71,14 +71,14 @@
 .heroSecondary {
   min-width: 180px;
   background: transparent;
-  color: var(--color-text);
-  border-color: rgba(21, 21, 21, 0.35);
+  color: var(--color-secondary);
+  border-color: rgba(19, 70, 109, 0.35);
 }
 
 .heroSecondary:hover {
-  background: rgba(21, 21, 21, 0.06);
-  border-color: rgba(21, 21, 21, 0.55);
-  color: var(--color-text);
+  background: rgba(19, 70, 109, 0.08);
+  border-color: rgba(19, 70, 109, 0.55);
+  color: var(--color-secondary);
 }
 
 .heroStats {
@@ -119,6 +119,7 @@
   object-fit: cover;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-medium);
+  transition: var(--transition-slow);
 }
 
 .heroPanel {
@@ -129,6 +130,7 @@
   box-shadow: var(--shadow-soft);
   display: grid;
   gap: 0.35rem;
+  transition: var(--transition-base);
 }
 
 .panelEyebrow {
@@ -177,6 +179,7 @@
   border-radius: var(--radius-md);
   padding: var(--space-lg);
   box-shadow: var(--shadow-soft);
+  transition: var(--transition-base);
 }
 
 .aboutGrid {
@@ -198,6 +201,7 @@
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background: var(--color-softSurface);
+  transition: var(--transition-base);
 }
 
 .logoCaption {
@@ -217,6 +221,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--layout-grid-gap);
+}
+
+.heroImage:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.heroPanel:hover,
+.softCard:hover,
+.logoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+  border-color: rgba(19, 70, 109, 0.25);
 }
 
 .hostSection {

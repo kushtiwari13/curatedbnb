@@ -1,8 +1,10 @@
+import { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import BookingWidget from '../components/BookingWidget'
 import Button from '../components/atoms/Button'
 import { getPropertyBySlug } from '../data/properties'
 import useDocumentMeta from '../hooks/useDocumentMeta'
+import Modal from '../components/Modal'
 import styles from './PropertyPage.module.css'
 
 const amenityIcons = {
@@ -18,10 +20,16 @@ const amenityIcons = {
 }
 
 const PropertyPage = () => {
-  const { slug, id } = useParams()
+  const { slug } = useParams()
   const navigate = useNavigate()
-  const resolvedSlug = slug || (id ? `property-${id}` : undefined)
-  const property = getPropertyBySlug(resolvedSlug)
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0)
+  const [showGallery, setShowGallery] = useState(false)
+  const property = getPropertyBySlug(slug)
+  const gallery = useMemo(() => {
+    if (!property) return []
+    if (property.gallery?.length) return property.gallery
+    return [{ src: property.image, label: 'Property' }]
+  }, [property])
 
   useDocumentMeta(
     property
@@ -48,11 +56,22 @@ const PropertyPage = () => {
     )
   }
 
+  const activePhoto = gallery[activePhotoIndex]
+
+  const handlePrevPhoto = () => {
+    setActivePhotoIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1))
+  }
+
+  const handleNextPhoto = () => {
+    setActivePhotoIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1))
+  }
+
   return (
     <>
       <div className="container section">
         <div
           className={styles.hero}
+          data-reveal
           style={{
             backgroundImage: `linear-gradient(180deg, rgba(21, 21, 21, 0.4), rgba(21, 21, 21, 0.75)), url(${property.image})`,
           }}
@@ -67,7 +86,41 @@ const PropertyPage = () => {
 
         <div className={styles.layout}>
           <div>
-            <div className={styles.chips}>
+            <div className={styles.gallery} data-reveal>
+              <div className={styles.galleryMain}>
+                {activePhoto && (
+                  <img
+                    src={activePhoto.src}
+                    alt={`${property.name} ${activePhoto.label}`}
+                    className={styles.galleryImage}
+                  />
+                )}
+                <button className={styles.galleryControl} onClick={handlePrevPhoto} aria-label="Previous photo">
+                  ‹
+                </button>
+                <button className={`${styles.galleryControl} ${styles.galleryControlNext}`} onClick={handleNextPhoto} aria-label="Next photo">
+                  ›
+                </button>
+                <Button variant="secondary" className={styles.galleryButton} onClick={() => setShowGallery(true)}>
+                  Show all photos
+                </Button>
+              </div>
+              <div className={styles.galleryThumbs}>
+                {gallery.map((photo, index) => (
+                  <button
+                    key={`${photo.src}-${photo.label}`}
+                    type="button"
+                    className={`${styles.galleryThumb} ${index === activePhotoIndex ? styles.activeThumb : ''}`}
+                    onClick={() => setActivePhotoIndex(index)}
+                  >
+                    <img src={photo.src} alt={photo.label} />
+                    <span>{photo.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.chips} data-reveal>
               <span className={styles.chip}>{property.capacity.guests} guests</span>
               <span className={styles.chip}>{property.capacity.bedrooms} bedrooms</span>
               <span className={styles.chip}>{property.capacity.bathrooms} bathrooms</span>
@@ -75,14 +128,14 @@ const PropertyPage = () => {
               <span className={styles.chip}>Parking</span>
             </div>
 
-            <div className={styles.sectionCard}>
+            <div className={styles.sectionCard} data-reveal>
               <h2>About this stay</h2>
               {property.description.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
 
-            <div className={styles.sectionCard} style={{ marginTop: 'var(--space-md)' }}>
+            <div className={styles.sectionCard} style={{ marginTop: 'var(--space-md)' }} data-reveal>
               <h2>Elevated essentials</h2>
               <div className={styles.amenities}>
                 {property.amenities.map((item) => (
@@ -94,9 +147,29 @@ const PropertyPage = () => {
               </div>
             </div>
 
-            <div className={styles.sectionCard} style={{ marginTop: 'var(--space-md)' }}>
+            <div className={styles.sectionCard} style={{ marginTop: 'var(--space-md)' }} data-reveal>
               <h2>Neighborhood highlights</h2>
-              <div className={styles.mapPlaceholder}>Map preview placeholder</div>
+              <div className={styles.map}>
+                <div className={styles.mapInfo}>
+                  <p className={styles.mapLabel}>Address</p>
+                  <p className={styles.mapAddress}>1600 Amphitheatre Parkway, Mountain View, CA</p>
+                  <a
+                    className={styles.mapLink}
+                    href="https://www.google.com/maps/search/?api=1&query=1600+Amphitheatre+Parkway+Mountain+View+CA"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open in Google Maps
+                  </a>
+                </div>
+                <iframe
+                  title="Map"
+                  className={styles.mapFrame}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-122.08635%2C37.42139%2C-122.08205%2C37.42457&layer=mapnik&marker=37.42298%2C-122.0847"
+                />
+              </div>
               <ul>
                 {property.highlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>
@@ -108,6 +181,19 @@ const PropertyPage = () => {
           <BookingWidget property={property} />
         </div>
       </div>
+
+      {showGallery && (
+        <Modal title={`${property.name} photos`} onClose={() => setShowGallery(false)}>
+          <div className={styles.galleryGrid}>
+            {gallery.map((photo) => (
+              <figure key={`${photo.src}-${photo.label}`} className={styles.galleryTile}>
+                <img src={photo.src} alt={`${property.name} ${photo.label}`} />
+                <figcaption>{photo.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </Modal>
+      )}
     </>
   )
 }
