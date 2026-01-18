@@ -14,7 +14,7 @@ const PropertyCard = ({ property }) => {
         <h3 className={styles.title}>{property.name}</h3>
         <p className={styles.tagline}>{property.tagline}</p>
         <div className={styles.meta}>
-          <span className={styles.price}>From {formatCurrency(property.pricing.nightlyRate)} / night</span>
+          <span className={styles.price}>From {formatCurrency(property.pricing.weekdayRate)} / night</span>
           <Button as={Link} to={`/properties/${property.slug}`} variant="secondary" size="small">
             View details
           </Button>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import BookingWidget from '../components/BookingWidget'
 import Button from '../components/atoms/Button'
@@ -30,6 +30,8 @@ const PropertyPage = () => {
     if (property.gallery?.length) return property.gallery
     return [{ src: property.image, label: 'Property' }]
   }, [property])
+  const carouselPhotos = useMemo(() => gallery.filter((item) => item.label), [gallery])
+  const displayPhotos = carouselPhotos.length ? carouselPhotos : gallery
 
   useDocumentMeta(
     property
@@ -56,14 +58,18 @@ const PropertyPage = () => {
     )
   }
 
-  const activePhoto = gallery[activePhotoIndex]
+  useEffect(() => {
+    setActivePhotoIndex(0)
+  }, [displayPhotos.length])
+
+  const activePhoto = displayPhotos[activePhotoIndex]
 
   const handlePrevPhoto = () => {
-    setActivePhotoIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1))
+    setActivePhotoIndex((prev) => (prev === 0 ? displayPhotos.length - 1 : prev - 1))
   }
 
   const handleNextPhoto = () => {
-    setActivePhotoIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1))
+    setActivePhotoIndex((prev) => (prev === displayPhotos.length - 1 ? 0 : prev + 1))
   }
 
   return (
@@ -91,7 +97,7 @@ const PropertyPage = () => {
                 {activePhoto && (
                   <img
                     src={activePhoto.src}
-                    alt={`${property.name} ${activePhoto.label}`}
+                    alt={`${property.name}${activePhoto.label ? ` ${activePhoto.label}` : ''}`}
                     className={styles.galleryImage}
                   />
                 )}
@@ -106,14 +112,14 @@ const PropertyPage = () => {
                 </Button>
               </div>
               <div className={styles.galleryThumbs}>
-                {gallery.map((photo, index) => (
+                {displayPhotos.map((photo, index) => (
                   <button
                     key={`${photo.src}-${photo.label}`}
                     type="button"
                     className={`${styles.galleryThumb} ${index === activePhotoIndex ? styles.activeThumb : ''}`}
                     onClick={() => setActivePhotoIndex(index)}
                   >
-                    <img src={photo.src} alt={photo.label} />
+                    <img src={photo.src} alt={photo.label || 'Property photo'} />
                     <span>{photo.label}</span>
                   </button>
                 ))}
@@ -187,8 +193,8 @@ const PropertyPage = () => {
           <div className={styles.galleryGrid}>
             {gallery.map((photo) => (
               <figure key={`${photo.src}-${photo.label}`} className={styles.galleryTile}>
-                <img src={photo.src} alt={`${property.name} ${photo.label}`} />
-                <figcaption>{photo.label}</figcaption>
+                <img src={photo.src} alt={`${property.name}${photo.label ? ` ${photo.label}` : ''}`} />
+                {photo.label && <figcaption>{photo.label}</figcaption>}
               </figure>
             ))}
           </div>

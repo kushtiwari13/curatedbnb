@@ -279,4 +279,22 @@
     position: static;
     margin-top: 0.5rem;
   }
+
+  .galleryThumbs {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+  }
+
+  .galleryThumb {
+    min-width: 120px;
+  }
+
+  .sectionCard {
+    padding: var(--space-md);
+  }
+
+  .mapFrame {
+    height: 200px;
+  }
 }

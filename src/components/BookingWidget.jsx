@@ -12,6 +12,25 @@ const getNights = (range) => {
   return Math.max(1, Math.round(diff / (1000 * 60 * 60 * 24)))
 }
 
+const getDateList = (range) => {
+  if (!range?.from || !range?.to) return []
+  const dates = []
+  const current = new Date(range.from)
+  current.setHours(0, 0, 0, 0)
+  const end = new Date(range.to)
+  end.setHours(0, 0, 0, 0)
+  while (current < end) {
+    dates.push(new Date(current))
+    current.setDate(current.getDate() + 1)
+  }
+  return dates
+}
+
+const isWeekendNight = (date) => {
+  const day = date.getDay()
+  return day === 5 || day === 6
+}
+
 const formatCurrency = (value) =>
   new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value)
 
@@ -42,10 +61,22 @@ const BookingWidget = ({ property }) => {
   }, [property.iCalUrl])
 
   const nights = useMemo(() => getNights(range), [range])
-  const subtotal = nights * property.pricing.nightlyRate
+  const stayDates = useMemo(() => getDateList(range), [range])
+  const weekdayNights = stayDates.filter((date) => !isWeekendNight(date)).length
+  const weekendNights = stayDates.filter((date) => isWeekendNight(date)).length
+
+  const nightlySubtotal =
+    weekdayNights * property.pricing.weekdayRate + weekendNights * property.pricing.weekendRate
+  const extraGuestCount = Math.max(0, guests - property.pricing.extraGuestAfter)
+  const extraGuestTotal = extraGuestCount * property.pricing.extraGuestFee * nights
+  const discountRate =
+    nights >= 28 ? property.pricing.monthlyDiscountPercent : nights >= 7 ? property.pricing.weeklyDiscountPercent : 0
+  const discountAmount = Math.round((nightlySubtotal + extraGuestTotal) * discountRate)
   const cleaning = nights ? property.pricing.cleaningFee : 0
-  const service = nights ? Math.round((subtotal + cleaning) * property.pricing.serviceFeePercent) : 0
-  const total = subtotal + cleaning + service
+  const petFee = nights ? property.pricing.petFee : 0
+  const subtotal = nightlySubtotal + extraGuestTotal - discountAmount
+  const service = nights ? Math.round((subtotal + cleaning + petFee) * property.pricing.serviceFeePercent) : 0
+  const total = subtotal + cleaning + petFee + service
 
   const handleCheck = () => {
     setMessage('')
@@ -113,8 +144,8 @@ const BookingWidget = ({ property }) => {
     <aside className={styles.widget} aria-label="Booking widget" data-reveal>
       <div className={styles.header}>
         <div>
-          <div className={styles.price}>{formatCurrency(property.pricing.nightlyRate)}</div>
-          <span style={{ color: 'var(--color-muted)' }}>per night</span>
+          <div className={styles.price}>{formatCurrency(property.pricing.weekdayRate)}</div>
+          <span style={{ color: 'var(--color-muted)' }}>from per night</span>
         </div>
         <div style={{ textAlign: 'right', color: 'var(--color-muted)' }}>
           {unavailable.length ? `${unavailable.length} blocked ranges` : 'Checking calendar...'}
@@ -169,16 +200,53 @@ const BookingWidget = ({ property }) => {
       </div>
 
       <div className={styles.summary}>
-        <div className={styles.summaryRow}>
-          <span>
-            {nights || 0} night{nights !== 1 ? 's' : ''} x {formatCurrency(property.pricing.nightlyRate)}
-          </span>
-          <span>{formatCurrency(subtotal)}</span>
-        </div>
-        <div className={styles.summaryRow}>
-          <span>Cleaning fee</span>
-          <span>{formatCurrency(cleaning)}</span>
-        </div>
+        {nights === 0 ? (
+          <div className={styles.summaryRow}>
+            <span>Select dates to view pricing</span>
+            <span>—</span>
+          </div>
+        ) : (
+          <>
+            {weekdayNights > 0 && (
+              <div className={styles.summaryRow}>
+                <span>
+                  {weekdayNights} weekday night{weekdayNights !== 1 ? 's' : ''} x {formatCurrency(property.pricing.weekdayRate)}
+                </span>
+                <span>{formatCurrency(weekdayNights * property.pricing.weekdayRate)}</span>
+              </div>
+            )}
+            {weekendNights > 0 && (
+              <div className={styles.summaryRow}>
+                <span>
+                  {weekendNights} weekend night{weekendNights !== 1 ? 's' : ''} x {formatCurrency(property.pricing.weekendRate)}
+                </span>
+                <span>{formatCurrency(weekendNights * property.pricing.weekendRate)}</span>
+              </div>
+            )}
+            {extraGuestTotal > 0 && (
+              <div className={styles.summaryRow}>
+                <span>
+                  Extra guests ({extraGuestCount} x {formatCurrency(property.pricing.extraGuestFee)} x {nights} nights)
+                </span>
+                <span>{formatCurrency(extraGuestTotal)}</span>
+              </div>
+            )}
+            {discountAmount > 0 && (
+              <div className={styles.summaryRow}>
+                <span>{Math.round(discountRate * 100)}% stay discount</span>
+                <span>-{formatCurrency(discountAmount)}</span>
+              </div>
+            )}
+            <div className={styles.summaryRow}>
+              <span>Cleaning fee</span>
+              <span>{formatCurrency(cleaning)}</span>
+            </div>
+            <div className={styles.summaryRow}>
+              <span>Pet fee</span>
+              <span>{formatCurrency(petFee)}</span>
+            </div>
+          </>
+        )}
         <div className={styles.summaryRow}>
           <span>Service ({Math.round(property.pricing.serviceFeePercent * 100)}%)</span>
           <span>{formatCurrency(service)}</span>

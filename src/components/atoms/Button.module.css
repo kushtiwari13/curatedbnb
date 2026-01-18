@@ -33,7 +33,7 @@
 }
 
 .secondary:hover {
-  background: rgba(19, 70, 109, 0.08);
+  background: rgba(19, 70, 109, 0.14);
   transform: translateY(-1px);
 }
 

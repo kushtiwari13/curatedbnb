@@ -18,6 +18,13 @@
   border-color: rgba(19, 70, 109, 0.25);
 }
 
+@media (max-width: 900px) {
+  .widget {
+    position: static;
+    top: auto;
+  }
+}
+
 .header {
   display: flex;
   align-items: baseline;

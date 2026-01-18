@@ -97,6 +97,12 @@ button {
   padding: 0 var(--space-md);
 }
 
+@media (max-width: 600px) {
+  .container {
+    padding: 0 var(--space-sm);
+  }
+}
+
 .section {
   padding: var(--space-xl) 0;
 }

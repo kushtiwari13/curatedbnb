@@ -21,16 +21,29 @@ export const properties = [
       { label: 'Covered parking', iconKey: 'parking' },
     ],
     capacity: { guests: 7, bedrooms: 3, bathrooms: 3 },
-    pricing: { nightlyRate: 12000, cleaningFee: 1500, serviceFeePercent: 0.12 },
+    pricing: {
+      weekdayRate: 10950,
+      weekendRate: 11936,
+      cleaningFee: 0,
+      petFee: 0,
+      extraGuestFee: 1500,
+      extraGuestAfter: 6,
+      weeklyDiscountPercent: 0.08,
+      monthlyDiscountPercent: 0.15,
+      serviceFeePercent: 0.12,
+    },
     image:
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1579731060033412002/original/54dc3bf9-b662-41ce-9e5b-e6cc235cbaab.jpeg?im_w=720&width=720&quality=70&auto=webp',
-    // Gallery images: replace or add URLs to update the carousel/photos.
+    // Gallery images: first five are labeled for the carousel (Hall/Bedroom/Dining/Bathroom/Balcony).
+    // Add additional images without labels; they appear only in "Show all photos".
     gallery: [
       { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80', label: 'Bedroom' },
       { src: 'https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=1600&q=80', label: 'Dining' },
       { src: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=1600&q=80', label: 'Bathroom' },
       { src: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1600&q=80', label: 'Balcony' },
+      { src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1600&q=80' },
+      { src: 'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80' },
     ],
     iCalUrl: getIcalUrl('1579731060033412002'),
     highlights: ['Architectural design', 'Lush indoor plants', 'Central Koramangala address'],
@@ -55,16 +68,29 @@ export const properties = [
       { label: 'Power backup', iconKey: 'spa' },
     ],
     capacity: { guests: 7, bedrooms: 3, bathrooms: 3 },
-    pricing: { nightlyRate: 9800, cleaningFee: 1200, serviceFeePercent: 0.12 },
+    pricing: {
+      weekdayRate: 7078,
+      weekendRate: 8028,
+      cleaningFee: 0,
+      petFee: 0,
+      extraGuestFee: 1500,
+      extraGuestAfter: 6,
+      weeklyDiscountPercent: 0.08,
+      monthlyDiscountPercent: 0.15,
+      serviceFeePercent: 0.12,
+    },
     image:
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1194226480033123893/original/415dd0c7-0029-4afb-b50c-cdcc015360fe.jpeg?im_w=720&width=720&quality=70&auto=webp',
-    // Gallery images: replace or add URLs to update the carousel/photos.
+    // Gallery images: first five are labeled for the carousel (Hall/Bedroom/Dining/Bathroom/Balcony).
+    // Add additional images without labels; they appear only in "Show all photos".
     gallery: [
       { src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80', label: 'Bedroom' },
       { src: 'https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=1600&q=80', label: 'Dining' },
       { src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80', label: 'Bathroom' },
       { src: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80', label: 'Balcony' },
+      { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80' },
+      { src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1600&q=80' },
     ],
     iCalUrl: getIcalUrl('1194226480033123893'),
     highlights: ['Indoor plant styling', 'Concierge-ready layout', 'Walkable Jayanagar'],
@@ -89,16 +115,29 @@ export const properties = [
       { label: 'Balcony sit-out', iconKey: 'view' },
     ],
     capacity: { guests: 7, bedrooms: 3, bathrooms: 3 },
-    pricing: { nightlyRate: 10500, cleaningFee: 1300, serviceFeePercent: 0.12 },
+    pricing: {
+      weekdayRate: 9950,
+      weekendRate: 10950,
+      cleaningFee: 0,
+      petFee: 0,
+      extraGuestFee: 2000,
+      extraGuestAfter: 7,
+      weeklyDiscountPercent: 0.07,
+      monthlyDiscountPercent: 0.15,
+      serviceFeePercent: 0.12,
+    },
     image:
       'https://a0.muscache.com/im/pictures/hosting/Hosting-1312299992373684071/original/5f429019-3dc0-428f-862c-4926a8c2e79b.jpeg?im_w=720&width=720&quality=70&auto=webp',
-    // Gallery images: replace or add URLs to update the carousel/photos.
+    // Gallery images: first five are labeled for the carousel (Hall/Bedroom/Dining/Bathroom/Balcony).
+    // Add additional images without labels; they appear only in "Show all photos".
     gallery: [
       { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80', label: 'Bedroom' },
       { src: 'https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=1600&q=80', label: 'Dining' },
       { src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80', label: 'Bathroom' },
       { src: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80', label: 'Balcony' },
+      { src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1600&q=80' },
+      { src: 'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80' },
     ],
     iCalUrl: getIcalUrl('1312299992373684071'),
     highlights: ['Warm Japanese-inspired lighting', 'Central Jayanagar address', 'Thoughtful detailing'],

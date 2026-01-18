@@ -31,9 +31,6 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <Link to="/properties/the-brutalist-den-koramangala" className={styles.navLink} onClick={() => setOpen(false)}>
-            Properties
-          </Link>
           <Button
             as="a"
             href="/#properties"

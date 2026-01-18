@@ -42,11 +42,13 @@ const Footer = () => {
           <a className={styles.link} href="mailto:hello@curatedbnb.com">
             hello@curatedbnb.com
           </a>
-          <a className={styles.link} href="https://instagram.com" target="_blank" rel="noreferrer">
+          <a className={styles.iconLink} href="https://www.instagram.com/curatedbnbs" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="17.4" cy="6.6" r="1" />
+            </svg>
             Instagram
-          </a>
-          <a className={styles.link} href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-            LinkedIn
           </a>
         </div>
         <div className={styles.links}>
@@ -68,7 +70,9 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div className={`container ${styles.legal}`}>© {new Date().getFullYear()} Curated BNB. Crafted with care.</div>
+      <div className={`container ${styles.legal}`}>
+        © {new Date().getFullYear()} Curated BNB. Crafted with care. Designed and developed by MindsAhead Digital
+      </div>
     </footer>
   )
 }

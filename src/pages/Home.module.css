@@ -111,6 +111,7 @@
   display: grid;
   gap: var(--space-md);
   align-items: start;
+  position: relative;
 }
 
 .heroImage {
@@ -120,6 +121,18 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-medium);
   transition: var(--transition-slow);
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .heroPanel {
@@ -213,7 +226,7 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--layout-grid-gap);
 }
 
@@ -304,9 +317,30 @@
   .hostSection {
     grid-template-columns: 1fr;
   }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 600px) {
+  .heroInner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .heroMedia::before {
+    content: '';
+    position: absolute;
+    inset: -12px -12px auto -12px;
+    height: 75%;
+    border-radius: var(--radius-md);
+    background: radial-gradient(circle at top, rgba(19, 70, 109, 0.18), transparent 60%),
+      linear-gradient(120deg, rgba(19, 70, 109, 0.12), rgba(200, 164, 90, 0.14));
+    z-index: 0;
+  }
+
   .heroActions {
     width: 100%;
   }
@@ -322,5 +356,22 @@
 
   .logoCard {
     width: 100%;
+  }
+
+  .heroImage {
+    height: 280px;
+    position: relative;
+    z-index: 1;
+    animation: drift 7s ease-in-out infinite;
+  }
+
+  .sectionHeader {
+    align-items: flex-start;
+  }
+
+  .featuresGrid,
+  .propertiesGrid,
+  .aboutGrid {
+    grid-template-columns: 1fr;
   }
 }
