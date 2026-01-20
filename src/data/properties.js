@@ -51,7 +51,7 @@ export const properties = [
     mapAddress: 'The Brutalist Den',
     mapLink: 'https://maps.app.goo.gl/7V9yZ66hiKWmsf897?g_st=iw',
     mapEmbed:
-      'https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2F7V9yZ66hiKWmsf897&output=embed',
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5536655437977!2d77.6298517!3d12.936383399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144297d6dcf1%3A0xfe608fc250160719!2sZaanz%20Apartments!5e0!3m2!1sen!2sin!4v1768919846220!5m2!1sen!2sin',
     highlights: ['Architectural design', 'Lush indoor plants', 'Central Koramangala address'],
   },
   {
@@ -103,7 +103,7 @@ export const properties = [
     mapAddress: 'The City Boho',
     mapLink: 'https://maps.app.goo.gl/u5TM7erYfxdwcdBt8?g_st=iw',
     mapEmbed:
-      'https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2Fu5TM7erYfxdwcdBt8&output=embed',
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7092384341895!2d77.5872318!3d12.9264001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae159228ab2755%3A0x81a1841a0391d2c1!2sMoshi%20Moshi%20-%20The%20Communication%20Company!5e0!3m2!1sen!2sin!4v1768919936306!5m2!1sen!2sin',
     highlights: ['Indoor plant styling', 'Concierge-ready layout', 'Walkable Jayanagar'],
   },
   {
@@ -155,7 +155,7 @@ export const properties = [
     mapAddress: 'The Japandi Nest',
     mapLink: 'https://maps.app.goo.gl/u5TM7erYfxdwcdBt8?g_st=iw',
     mapEmbed:
-      'https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2Fu5TM7erYfxdwcdBt8&output=embed',
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7092384341895!2d77.5872318!3d12.9264001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae159228ab2755%3A0x81a1841a0391d2c1!2sMoshi%20Moshi%20-%20The%20Communication%20Company!5e0!3m2!1sen!2sin!4v1768919936306!5m2!1sen!2sin',
     highlights: ['Warm Japanese-inspired lighting', 'Central Jayanagar address', 'Thoughtful detailing'],
   },
 ]
