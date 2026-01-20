@@ -158,13 +158,8 @@ const PropertyPage = () => {
               <div className={styles.map}>
                 <div className={styles.mapInfo}>
                   <p className={styles.mapLabel}>Address</p>
-                  <p className={styles.mapAddress}>1600 Amphitheatre Parkway, Mountain View, CA</p>
-                  <a
-                    className={styles.mapLink}
-                    href="https://www.google.com/maps/search/?api=1&query=1600+Amphitheatre+Parkway+Mountain+View+CA"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <p className={styles.mapAddress}>{property.mapAddress || 'See map for location'}</p>
+                  <a className={styles.mapLink} href={property.mapLink} target="_blank" rel="noreferrer">
                     Open in Google Maps
                   </a>
                 </div>
@@ -173,7 +168,7 @@ const PropertyPage = () => {
                   className={styles.mapFrame}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-122.08635%2C37.42139%2C-122.08205%2C37.42457&layer=mapnik&marker=37.42298%2C-122.0847"
+                  src={property.mapEmbed}
                 />
               </div>
               <ul>

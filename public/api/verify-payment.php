@@ -81,6 +81,7 @@ $textPath = $confirmationsDir . '/' . $textFilename;
 $icsPath = $confirmationsDir . '/' . $icsFilename;
 
 $propertyName = $booking['propertyName'] ?? 'Curated BNB stay';
+$propertySlug = $booking['propertySlug'] ?? 'property';
 $guests = $booking['guests'] ?? '';
 $total = $booking['total'] ?? '';
 
@@ -128,6 +129,29 @@ $headers = [
 if ($guestEmail) {
     @mail($guestEmail, $subject, $message, implode("\r\n", $headers));
 }
+
+$bookingsDir = __DIR__ . '/../bookings';
+if (!is_dir($bookingsDir)) {
+    mkdir($bookingsDir, 0755, true);
+}
+$bookingFile = $bookingsDir . '/' . preg_replace('/[^a-z0-9-]/i', '', $propertySlug) . '.json';
+$existing = [];
+if (is_file($bookingFile)) {
+    $existingRaw = file_get_contents($bookingFile);
+    $decoded = json_decode((string) $existingRaw, true);
+    if (is_array($decoded)) {
+        $existing = $decoded;
+    }
+}
+
+$existing[] = [
+    'uid' => $safePaymentId,
+    'checkIn' => $checkInRaw,
+    'checkOut' => $checkOutRaw,
+    'summary' => $propertyName,
+];
+
+file_put_contents($bookingFile, json_encode($existing, JSON_PRETTY_PRINT));
 
 echo json_encode([
     'status' => 'success',

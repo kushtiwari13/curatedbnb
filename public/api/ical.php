@@ -22,7 +22,7 @@ if ($parts === false || !isset($parts['scheme'], $parts['host'])) {
 
 $scheme = strtolower($parts['scheme']);
 $host = strtolower($parts['host']);
-if ($scheme !== 'https' || !preg_match('/(^|\.)airbnb\.com$/', $host)) {
+if ($scheme !== 'https' || !preg_match('/(^|\.)airbnb\.(com|co\.in)$/', $host)) {
     http_response_code(403);
     echo "URL not allowed.\n";
     exit;
@@ -37,7 +37,11 @@ if (function_exists('curl_init')) {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_CONNECTTIMEOUT => 5,
         CURLOPT_TIMEOUT => 10,
-        CURLOPT_USERAGENT => 'CuratedBNB-iCal-Proxy/1.0',
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) CuratedBNB-iCal-Proxy/1.0',
+        CURLOPT_HTTPHEADER => [
+            'Accept: text/calendar,text/plain,*/*',
+            'Accept-Language: en-IN,en;q=0.8',
+        ],
     ]);
     $responseBody = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);

@@ -1,4 +1,5 @@
-const getIcalUrl = (listingId) => `https://www.airbnb.com/calendar/ical/${listingId}.ics`
+const getIcalUrl = (url) => url
+const getOutboundIcalUrl = (slug) => `/api/ical-out.php?property=${slug}`
 
 export const properties = [
   {
@@ -45,7 +46,12 @@ export const properties = [
       { src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1600&q=80' },
       { src: 'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80' },
     ],
-    iCalUrl: getIcalUrl('1579731060033412002'),
+    iCalUrl: getIcalUrl('https://www.airbnb.co.in/calendar/ical/1579731060033412002.ics?t=a13958616da248379bc3656227809d18'),
+    outIcalUrl: getOutboundIcalUrl('the-brutalist-den-koramangala'),
+    mapAddress: 'The Brutalist Den',
+    mapLink: 'https://maps.app.goo.gl/7V9yZ66hiKWmsf897?g_st=iw',
+    mapEmbed:
+      'https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2F7V9yZ66hiKWmsf897&output=embed',
     highlights: ['Architectural design', 'Lush indoor plants', 'Central Koramangala address'],
   },
   {
@@ -92,7 +98,12 @@ export const properties = [
       { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80' },
       { src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1600&q=80' },
     ],
-    iCalUrl: getIcalUrl('1194226480033123893'),
+    iCalUrl: getIcalUrl('https://www.airbnb.co.in/calendar/ical/1194226480033123893.ics?t=b74d8cda4c4a4c88a571bcf0ef4d192d'),
+    outIcalUrl: getOutboundIcalUrl('the-city-boho-jayanagar'),
+    mapAddress: 'The City Boho',
+    mapLink: 'https://maps.app.goo.gl/u5TM7erYfxdwcdBt8?g_st=iw',
+    mapEmbed:
+      'https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2Fu5TM7erYfxdwcdBt8&output=embed',
     highlights: ['Indoor plant styling', 'Concierge-ready layout', 'Walkable Jayanagar'],
   },
   {
@@ -139,7 +150,12 @@ export const properties = [
       { src: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1600&q=80' },
       { src: 'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80' },
     ],
-    iCalUrl: getIcalUrl('1312299992373684071'),
+    iCalUrl: getIcalUrl('https://www.airbnb.co.in/calendar/ical/1312299992373684071.ics?t=4cbc774432c54bdeb01449ae2d32d8d2'),
+    outIcalUrl: getOutboundIcalUrl('the-japandi-nest-jayanagar'),
+    mapAddress: 'The Japandi Nest',
+    mapLink: 'https://maps.app.goo.gl/u5TM7erYfxdwcdBt8?g_st=iw',
+    mapEmbed:
+      'https://www.google.com/maps?q=https%3A%2F%2Fmaps.app.goo.gl%2Fu5TM7erYfxdwcdBt8&output=embed',
     highlights: ['Warm Japanese-inspired lighting', 'Central Jayanagar address', 'Thoughtful detailing'],
   },
 ]

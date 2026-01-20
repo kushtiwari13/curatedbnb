@@ -51,7 +51,7 @@ const BookingWidget = ({ property }) => {
   useEffect(() => {
     let mounted = true
     const load = async () => {
-      const blocked = await getUnavailableDateRanges(property.iCalUrl)
+      const blocked = await getUnavailableDateRanges([property.iCalUrl, property.outIcalUrl])
       if (mounted) setUnavailable(blocked)
     }
     load()

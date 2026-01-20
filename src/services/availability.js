@@ -10,7 +10,17 @@ const fallbackRanges = [
   { start: normalizeDate(new Date(Date.now() + 28 * 24 * 60 * 60 * 1000)), end: normalizeDate(new Date(Date.now() + 31 * 24 * 60 * 60 * 1000)) },
 ]
 
-const proxyBase = import.meta.env.VITE_ICAL_PROXY
+const proxyBase = import.meta.env.VITE_ICAL_PROXY || '/api/ical.php'
+
+const shouldProxy = (url) => {
+  try {
+    if (url.startsWith('/')) return false
+    const parsed = new URL(url)
+    return parsed.hostname.includes('airbnb.')
+  } catch (error) {
+    return false
+  }
+}
 
 const parseDateLine = (line) => {
   const [, value] = line.split(':')
@@ -59,7 +69,8 @@ const parseICal = (text) => {
   return events
 }
 
-export const getUnavailableDateRanges = async (icalUrl) => {
+export const getUnavailableDateRanges = async (icalUrls) => {
+  const urls = Array.isArray(icalUrls) ? icalUrls.filter(Boolean) : [icalUrls].filter(Boolean)
   const tryFetch = async (url) => {
     const response = await fetch(url, { mode: 'cors' })
     if (!response.ok) throw new Error(`iCal fetch failed with status ${response.status}`)
@@ -70,17 +81,30 @@ export const getUnavailableDateRanges = async (icalUrl) => {
   }
 
   try {
-    return await tryFetch(icalUrl)
+    if (!urls.length) return fallbackRanges
+    const results = await Promise.all(
+      urls.map(async (url) => {
+        try {
+          if (proxyBase && shouldProxy(url)) {
+            return await tryFetch(`${proxyBase}?url=${encodeURIComponent(url)}`)
+          }
+          return await tryFetch(url)
+        } catch (error) {
+          if (proxyBase && shouldProxy(url)) {
+            try {
+              return await tryFetch(`${proxyBase}?url=${encodeURIComponent(url)}`)
+            } catch (proxyError) {
+              console.warn('Proxy attempt failed, falling back to mock data.', proxyError)
+            }
+          } else {
+            console.warn('Direct iCal fetch failed; set VITE_ICAL_PROXY to enable proxy.', error)
+          }
+          return []
+        }
+      }),
+    )
+    return results.flat()
   } catch (error) {
-    if (proxyBase) {
-      try {
-        return await tryFetch(`${proxyBase}?url=${encodeURIComponent(icalUrl)}`)
-      } catch (proxyError) {
-        console.warn('Proxy attempt failed, falling back to mock data.', proxyError)
-      }
-    } else {
-      console.warn('Direct iCal fetch failed; set VITE_ICAL_PROXY to enable proxy.', error)
-    }
     return fallbackRanges
   }
 }
