@@ -284,14 +284,24 @@
     display: flex;
     overflow-x: auto;
     padding-bottom: 0.35rem;
+    scroll-snap-type: x mandatory;
   }
 
   .galleryThumb {
     min-width: 120px;
+    scroll-snap-align: start;
   }
 
   .sectionCard {
     padding: var(--space-md);
+  }
+
+  .chips {
+    gap: 0.35rem;
+  }
+
+  .layout {
+    gap: var(--space-md);
   }
 
   .mapFrame {

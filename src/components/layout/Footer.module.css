@@ -106,4 +106,9 @@
   .inner {
     grid-template-columns: 1fr;
   }
+
+  .legal {
+    text-align: center;
+    justify-content: center;
+  }
 }

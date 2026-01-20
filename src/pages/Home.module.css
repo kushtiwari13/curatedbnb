@@ -324,6 +324,27 @@
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding: var(--space-lg) 0;
+  }
+
+  .heroCopy {
+    gap: 0.85rem;
+  }
+
+  .headline {
+    font-size: 2.4rem;
+  }
+
+  .subhead {
+    font-size: 1rem;
+  }
+
+  .pill {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.7rem;
+  }
+
   .heroInner {
     display: flex;
     flex-direction: column;
@@ -343,6 +364,7 @@
 
   .heroActions {
     width: 100%;
+    gap: 0.5rem;
   }
 
   .heroPrimary,
@@ -363,6 +385,11 @@
     position: relative;
     z-index: 1;
     animation: drift 7s ease-in-out infinite;
+  }
+
+  .heroPanel,
+  .softCard {
+    padding: var(--space-md);
   }
 
   .sectionHeader {

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../atoms/Button'
 import styles from './Header.module.css'
-import logo from '../../assets/Logo.svg'
-// import logo from '../../assets/curated_logo_new.png'
+// import logo from '../../assets/Logo.svg'
+import logo from '../../assets/curated_logo_new.png'
 
 const navLinks = [
   { label: 'About', href: '/#about' },
@@ -21,10 +21,6 @@ const Header = () => {
       <div className={`${styles.inner} container`}>
         <Link to="/" className={styles.brand} aria-label="Curated BNB home">
           <img src={logo} alt="Curated BNB logo" className={styles.logo} />
-          <span className={styles.brandText}>
-            <span className={styles.brandTitle}>Curated BNB</span>
-            <span className={styles.brandTagline}>Comfort redefined</span>
-          </span>
         </Link>
         <nav className={`${styles.nav} ${open ? styles.open : ''}`} aria-label="Primary navigation">
           {navLinks.map((item) => (
