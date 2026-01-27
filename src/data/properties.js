@@ -107,7 +107,7 @@ export const properties = [
     mapAddress: 'The City Boho',
     mapLink: 'https://maps.app.goo.gl/u5TM7erYfxdwcdBt8?g_st=iw',
     mapEmbed:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7092384341895!2d77.5872318!3d12.9264001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae159228ab2755%3A0x81a1841a0391d2c1!2sMoshi%20Moshi%20-%20The%20Communication%20Company!5e0!3m2!1sen!2sin!4v1768919936306!5m2!1sen!2sin',
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7094300361236!2d77.58744709999999!3d12.926387799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15a19b89ba9d%3A0x245ca8498b3b2d4a!2sNoor%20Residency%2C%2033rd%20A%20Cross%20Rd%2C%204th%20T%20Block%20East%2C%20Pattabhirama%20Nagar%2C%20Jayanagar%2C%20Bengaluru%2C%20Karnataka%20560011!5e0!3m2!1sen!2sin!4v1769550882336!5m2!1sen!2sin',
     highlights: ['Indoor plant styling', 'Concierge-ready layout', 'Walkable Jayanagar'],
   },
   {
