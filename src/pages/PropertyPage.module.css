@@ -39,6 +39,15 @@
   align-items: start;
 }
 
+.layout > * {
+  min-width: 0;
+}
+
+.booking {
+  width: 100%;
+  max-width: 100%;
+}
+
 .gallery {
   display: grid;
   gap: var(--space-sm);
@@ -51,6 +60,7 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-medium);
+  display: grid;
 }
 
 .galleryImage {
@@ -87,9 +97,9 @@
 }
 
 .galleryButton {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
+  position: static;
+  margin-top: 0.75rem;
+  justify-self: end;
 }
 
 .galleryThumbs {
@@ -133,6 +143,24 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.75rem;
+}
+
+.gallerySections {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.gallerySection {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.gallerySectionTitle {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-subtle);
 }
 
 .galleryTile {
@@ -221,12 +249,14 @@
   margin: 0;
   color: var(--color-text);
   font-weight: 600;
+  word-break: break-word;
 }
 
 .mapLink {
   color: var(--color-secondary);
   text-decoration: underline;
   font-weight: 600;
+  word-break: break-word;
 }
 
 .mapFrame {
@@ -262,11 +292,16 @@
   .galleryThumbs {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
+
+  .booking {
+    order: 2;
+  }
 }
 
 @media (max-width: 600px) {
   .hero {
-    min-height: 46vh;
+    min-height: 42vh;
+    padding: var(--space-sm);
   }
 
   .galleryControl {
@@ -276,8 +311,8 @@
   }
 
   .galleryButton {
-    position: static;
-    margin-top: 0.5rem;
+    width: 100%;
+    justify-self: stretch;
   }
 
   .galleryThumbs {
@@ -285,6 +320,8 @@
     overflow-x: auto;
     padding-bottom: 0.35rem;
     scroll-snap-type: x mandatory;
+    gap: 0.65rem;
+    -webkit-overflow-scrolling: touch;
   }
 
   .galleryThumb {
@@ -306,5 +343,9 @@
 
   .mapFrame {
     height: 200px;
+  }
+
+  .amenities {
+    grid-template-columns: 1fr;
   }
 }

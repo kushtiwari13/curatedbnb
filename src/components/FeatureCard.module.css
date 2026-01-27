@@ -57,3 +57,15 @@
   color: var(--color-muted);
   line-height: 1.6;
 }
+
+@media (max-width: 600px) {
+  .card {
+    padding: var(--space-md);
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .content {
+    align-items: flex-start;
+  }
+}

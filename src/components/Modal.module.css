@@ -6,6 +6,7 @@
   place-items: center;
   z-index: 200;
   padding: var(--space-md);
+  overflow-y: auto;
 }
 
 .dialog {
@@ -16,6 +17,16 @@
   width: 100%;
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--color-border);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  overflow-y: auto;
+  padding-right: 0.2rem;
+  flex: 1;
+  min-height: 0;
 }
 
 .close {
@@ -32,4 +43,11 @@
 .close:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .dialog {
+    padding: var(--space-md);
+    max-width: 100%;
+  }
 }

@@ -15,7 +15,7 @@ const PropertyCard = ({ property }) => {
         <p className={styles.tagline}>{property.tagline}</p>
         <div className={styles.meta}>
           <span className={styles.price}>From {formatCurrency(property.pricing.weekdayRate)} / night</span>
-          <Button as={Link} to={`/properties/${property.slug}`} variant="secondary" size="small">
+          <Button as={Link} to={`/properties/${property.slug}`} variant="secondary" size="small" className={styles.detailsButton}>
             View details
           </Button>
         </div>

@@ -63,6 +63,24 @@ const PropertyPage = () => {
   }, [displayPhotos.length])
 
   const activePhoto = displayPhotos[activePhotoIndex]
+  const gallerySections = useMemo(() => {
+    const labeled = gallery.filter((item) => item.label)
+    const unlabeled = gallery.filter((item) => !item.label)
+    const byLabel = labeled.reduce((acc, item) => {
+      const key = item.label
+      if (!acc[key]) acc[key] = []
+      acc[key].push(item)
+      return acc
+    }, {})
+    const orderedLabels = ['Hall', 'Bedroom', 'Kitchen', 'Dining', 'Bathroom', 'Balcony']
+    const sections = orderedLabels
+      .filter((label) => byLabel[label]?.length)
+      .map((label) => ({ title: label, photos: byLabel[label] }))
+    if (unlabeled.length) {
+      sections.push({ title: 'More photos', photos: unlabeled })
+    }
+    return sections
+  }, [gallery])
 
   const handlePrevPhoto = () => {
     setActivePhotoIndex((prev) => (prev === 0 ? displayPhotos.length - 1 : prev - 1))
@@ -107,10 +125,10 @@ const PropertyPage = () => {
                 <button className={`${styles.galleryControl} ${styles.galleryControlNext}`} onClick={handleNextPhoto} aria-label="Next photo">
                   ›
                 </button>
-                <Button variant="secondary" className={styles.galleryButton} onClick={() => setShowGallery(true)}>
-                  Show all photos
-                </Button>
               </div>
+              <Button variant="secondary" className={styles.galleryButton} onClick={() => setShowGallery(true)}>
+                Show all photos
+              </Button>
               <div className={styles.galleryThumbs}>
                 {displayPhotos.map((photo, index) => (
                   <button
@@ -179,18 +197,27 @@ const PropertyPage = () => {
             </div>
           </div>
 
-          <BookingWidget property={property} />
+          <div className={styles.booking}>
+            <BookingWidget property={property} />
+          </div>
         </div>
       </div>
 
       {showGallery && (
         <Modal title={`${property.name} photos`} onClose={() => setShowGallery(false)}>
-          <div className={styles.galleryGrid}>
-            {gallery.map((photo) => (
-              <figure key={`${photo.src}-${photo.label}`} className={styles.galleryTile}>
-                <img src={photo.src} alt={`${property.name}${photo.label ? ` ${photo.label}` : ''}`} />
-                {photo.label && <figcaption>{photo.label}</figcaption>}
-              </figure>
+          <div className={styles.gallerySections}>
+            {gallerySections.map((section) => (
+              <div key={section.title} className={styles.gallerySection}>
+                <h3 className={styles.gallerySectionTitle}>{section.title}</h3>
+                <div className={styles.galleryGrid}>
+                  {section.photos.map((photo) => (
+                    <figure key={`${photo.src}-${photo.label}`} className={styles.galleryTile}>
+                      <img src={photo.src} alt={`${property.name}${photo.label ? ` ${photo.label}` : ''}`} />
+                      {photo.label && <figcaption>{photo.label}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </Modal>

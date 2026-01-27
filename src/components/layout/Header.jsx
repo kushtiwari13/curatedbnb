@@ -17,12 +17,21 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {open && <div className={`${styles.overlay} ${open ? styles.open : ''}`} onClick={() => setOpen(false)} />}
+      {open && (
+        <div
+          className={`${styles.overlay} ${open ? styles.overlayActive : ''}`}
+          onClick={() => setOpen(false)}
+        />
+      )}
       <div className={`${styles.inner} container`}>
         <Link to="/" className={styles.brand} aria-label="Curated BNB home">
           <img src={logo} alt="Curated BNB logo" className={styles.logo} />
         </Link>
-        <nav className={`${styles.nav} ${open ? styles.open : ''}`} aria-label="Primary navigation">
+        <nav
+          id="primary-navigation"
+          className={`${styles.nav} ${open ? styles.navOpen : ''}`}
+          aria-label="Primary navigation"
+        >
           {navLinks.map((item) => (
             <a key={item.href} href={item.href} className={styles.navLink} onClick={() => setOpen(false)}>
               {item.label}
@@ -52,7 +61,9 @@ const Header = () => {
             className={styles.menuToggle}
             onClick={() => setOpen((prev) => !prev)}
             aria-expanded={open}
+            aria-controls="primary-navigation"
             aria-label="Toggle menu"
+            type="button"
           >
             {open ? '✕' : '☰'}
           </button>

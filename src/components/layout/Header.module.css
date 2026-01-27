@@ -3,7 +3,7 @@
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  background: rgba(247, 244, 238, 0.88);
+  background: rgba(247, 244, 238, 0.9);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -20,26 +20,23 @@
 .brand {
   display: flex;
   align-items: center;
-  width: 160px;
+  width: 140px;
   height: 50px;
   overflow: visible;
   position: relative;
   z-index: 2;
+  flex: 0 0 auto;
 }
 
 .logo {
-  width: 160px;
-  height: 50px;
+  width: auto;
+  height: 100%;
   border-radius: 10px;
   object-fit: contain;
   background: transparent;
   display: block;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) translateX(-150%) scale(4);
+  transform: scale(2.2);
   transform-origin: left center;
-  will-change: transform;
 }
 
 .nav {
@@ -80,6 +77,8 @@
   border-radius: var(--radius-md);
   color: var(--color-text);
   box-shadow: var(--shadow-soft);
+  position: relative;
+  z-index: 6;
 }
 
 .menuToggle:focus-visible {
@@ -101,6 +100,11 @@
 }
 
 @media (max-width: 900px) {
+  .inner {
+    padding: 0.65rem var(--space-sm);
+    gap: 0.5rem;
+  }
+
   .overlay {
     display: block;
     position: fixed;
@@ -112,28 +116,30 @@
     transition: var(--transition-base);
   }
 
-  .overlay.open {
+  .overlayActive {
     opacity: 1;
     pointer-events: auto;
   }
 
   .nav {
     position: absolute;
-    top: 68px;
-    right: var(--space-md);
+    top: calc(100% + 8px);
+    left: var(--space-sm);
+    right: var(--space-sm);
     background: rgba(251, 249, 244, 0.98);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-medium);
-    padding: var(--space-sm);
+    padding: 0.85rem;
     flex-direction: column;
     align-items: flex-start;
-    min-width: 240px;
+    min-width: 0;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transform: translateY(-8px);
     transition: var(--transition-base);
-    z-index: 3;
+    z-index: 5;
   }
 
   .navLink {
@@ -142,8 +148,9 @@
     padding: 0.65rem 0.9rem;
   }
 
-  .open {
+  .navOpen {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
   }
@@ -164,14 +171,12 @@
 
 @media (max-width: 600px) {
   .brand {
-    width: 130px;
-    height: 42px;
+    width: 140px;
+    height: 52px;
   }
 
   .logo {
-    width: 130px;
-    height: 42px;
-    transform: translateY(-50%) scale(3.2);
+    transform: scale(2.15);
   }
 
   .inner {

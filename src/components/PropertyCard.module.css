@@ -58,3 +58,32 @@
   font-weight: 700;
   color: var(--color-text);
 }
+
+.detailsButton {
+  min-width: 120px;
+}
+
+@media (max-width: 600px) {
+  .image {
+    height: 200px;
+  }
+
+  .content {
+    padding: var(--space-sm);
+  }
+
+  .title {
+    font-size: 1.15rem;
+  }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .detailsButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

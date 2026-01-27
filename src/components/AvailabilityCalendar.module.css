@@ -4,6 +4,8 @@
   padding: var(--space-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-soft);
+  width: 100%;
+  overflow: hidden;
 }
 
 .caption {
@@ -33,4 +35,10 @@
 .range {
   background: rgba(200, 164, 90, 0.18) !important;
   color: var(--color-text) !important;
+}
+
+@media (max-width: 600px) {
+  .calendar {
+    padding: var(--space-sm);
+  }
 }

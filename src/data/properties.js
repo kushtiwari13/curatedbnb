@@ -39,6 +39,8 @@ export const properties = [
     // Add additional images without labels; they appear only in "Show all photos".
     gallery: [
       { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
+      { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
+      { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80', label: 'Bedroom' },
       { src: 'https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=1600&q=80', label: 'Dining' },
       { src: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=1600&q=80', label: 'Bathroom' },
@@ -91,6 +93,8 @@ export const properties = [
     // Add additional images without labels; they appear only in "Show all photos".
     gallery: [
       { src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
+      { src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
+      { src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80', label: 'Bedroom' },
       { src: 'https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=1600&q=80', label: 'Dining' },
       { src: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80', label: 'Bathroom' },
@@ -142,6 +146,8 @@ export const properties = [
     // Gallery images: first five are labeled for the carousel (Hall/Bedroom/Dining/Bathroom/Balcony).
     // Add additional images without labels; they appear only in "Show all photos".
     gallery: [
+      { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
+      { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80', label: 'Hall' },
       { src: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80', label: 'Bedroom' },
       { src: 'https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=1600&q=80', label: 'Dining' },

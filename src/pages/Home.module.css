@@ -144,6 +144,8 @@
   display: grid;
   gap: 0.35rem;
   transition: var(--transition-base);
+  position: relative;
+  z-index: 1;
 }
 
 .panelEyebrow {
@@ -306,12 +308,13 @@
 
 @media (max-width: 900px) {
   .hero {
-    padding: var(--space-xl) 0;
-    margin: 0 0 var(--space-lg);
+    padding: var(--space-lg) 0;
+    margin: 0 0 var(--space-md);
   }
 
   .heroInner {
     grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
 
   .hostSection {
@@ -321,11 +324,24 @@
   .featuresGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .heroMedia {
+    order: 2;
+  }
+
+  .heroImage {
+    height: clamp(260px, 52vw, 360px);
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 600px) {
   .hero {
-    padding: var(--space-lg) 0;
+    padding: var(--space-md) 0;
   }
 
   .heroCopy {
@@ -333,11 +349,11 @@
   }
 
   .headline {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   .subhead {
-    font-size: 1rem;
+    font-size: 0.98rem;
   }
 
   .pill {
@@ -364,7 +380,8 @@
 
   .heroActions {
     width: 100%;
-    gap: 0.5rem;
+    gap: 0.65rem;
+    flex-direction: column;
   }
 
   .heroPrimary,
@@ -374,6 +391,13 @@
 
   .heroStats {
     grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .stat {
+    align-items: center;
+    text-align: center;
   }
 
   .logoCard {
@@ -381,10 +405,14 @@
   }
 
   .heroImage {
-    height: 280px;
+    height: 240px;
     position: relative;
     z-index: 1;
     animation: drift 7s ease-in-out infinite;
+  }
+
+  .heroPanel {
+    margin-top: 0.25rem;
   }
 
   .heroPanel,
