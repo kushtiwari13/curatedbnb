@@ -32,6 +32,16 @@ const PropertyPage = () => {
   }, [property])
   const carouselPhotos = useMemo(() => gallery.filter((item) => item.label), [gallery])
   const displayPhotos = carouselPhotos.length ? carouselPhotos : gallery
+  const thumbPhotos = useMemo(() => {
+    const seen = new Set()
+    const labeled = gallery.filter((item) => item.label)
+    const unique = labeled.filter((item) => {
+      if (seen.has(item.label)) return false
+      seen.add(item.label)
+      return true
+    })
+    return unique.length ? unique : displayPhotos
+  }, [gallery, displayPhotos])
 
   useDocumentMeta(
     property
@@ -130,12 +140,17 @@ const PropertyPage = () => {
                 Show all photos
               </Button>
               <div className={styles.galleryThumbs}>
-                {displayPhotos.map((photo, index) => (
+                {thumbPhotos.map((photo) => (
                   <button
                     key={`${photo.src}-${photo.label}`}
                     type="button"
-                    className={`${styles.galleryThumb} ${index === activePhotoIndex ? styles.activeThumb : ''}`}
-                    onClick={() => setActivePhotoIndex(index)}
+                    className={`${styles.galleryThumb} ${
+                      displayPhotos[activePhotoIndex]?.src === photo.src ? styles.activeThumb : ''
+                    }`}
+                    onClick={() => {
+                      const nextIndex = displayPhotos.findIndex((item) => item.src === photo.src)
+                      if (nextIndex >= 0) setActivePhotoIndex(nextIndex)
+                    }}
                   >
                     <img src={photo.src} alt={photo.label || 'Property photo'} />
                     <span>{photo.label}</span>
