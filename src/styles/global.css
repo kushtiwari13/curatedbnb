@@ -18,7 +18,7 @@
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f7f4ee 0%, #f1ede6 55%, #fbf9f4 100%);
+  background: linear-gradient(180deg, #f6f1e9 0%, #efe7d8 55%, #fbf8f2 100%);
   color: var(--color-text);
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -76,7 +76,7 @@ button {
 }
 
 ::selection {
-  background: rgba(200, 164, 90, 0.25);
+  background: rgba(198, 167, 106, 0.28);
 }
 
 .app-shell {
@@ -132,7 +132,7 @@ button {
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px;
+  margin: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;

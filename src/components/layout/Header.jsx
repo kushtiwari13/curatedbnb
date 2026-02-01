@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Button from '../atoms/Button'
 import styles from './Header.module.css'
-// import logo from '../../assets/Logo.svg'
 import logo from '../../assets/curated_logo_new.png'
 
 const navLinks = [
@@ -14,14 +13,21 @@ const navLinks = [
 
 const Header = () => {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 12)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isHome && !scrolled ? styles.headerTransparent : styles.headerSolid}`}>
       {open && (
-        <div
-          className={`${styles.overlay} ${open ? styles.overlayActive : ''}`}
-          onClick={() => setOpen(false)}
-        />
+        <div className={`${styles.overlay} ${open ? styles.overlayActive : ''}`} onClick={() => setOpen(false)} />
       )}
       <div className={`${styles.inner} container`}>
         <Link to="/" className={styles.brand} aria-label="Curated BNB home">
@@ -48,13 +54,7 @@ const Header = () => {
           </Button>
         </nav>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.625rem 0' }}>
-          <Button
-            as="a"
-            href="/#properties"
-            variant="primary"
-            className={styles.cta}
-            onClick={() => setOpen(false)}
-          >
+          <Button as="a" href="/#properties" variant="primary" className={styles.cta} onClick={() => setOpen(false)}>
             Book a Stay
           </Button>
           <button

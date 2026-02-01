@@ -15,7 +15,7 @@
 .card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-medium);
-  border-color: rgba(19, 70, 109, 0.35);
+  border-color: rgba(198, 167, 106, 0.35);
 }
 
 .icon {
@@ -24,8 +24,8 @@
   display: grid;
   place-items: center;
   border-radius: var(--radius-md);
-  background: rgba(200, 164, 90, 0.08);
-  border: 1px solid rgba(200, 164, 90, 0.2);
+  background: rgba(198, 167, 106, 0.12);
+  border: 1px solid rgba(198, 167, 106, 0.35);
   color: var(--color-accent);
   font-weight: 700;
   font-size: 1.2rem;
@@ -60,9 +60,11 @@
 
 @media (max-width: 600px) {
   .card {
-    padding: var(--space-md);
+    padding: calc(var(--space-md) + 0.25rem);
     text-align: left;
     align-items: flex-start;
+    border-radius: calc(var(--radius-md) + 6px);
+    box-shadow: 0 16px 34px rgba(17, 17, 17, 0.1);
   }
 
   .content {
