@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: clamp(5.5rem, 12vw, 7.5rem) 0;
+  padding: clamp(3.6rem, 9vw, 5.6rem) 0;
   min-height: 90vh;
   background: #f6f1e9;
   overflow: hidden;
